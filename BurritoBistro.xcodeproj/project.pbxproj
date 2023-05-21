@@ -1,0 +1,636 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */; };
+		CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA182A186CD500E0CDFC /* MenuItems.swift */; };
+		CBA161A529C30377009699F8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A429C30377009699F8 /* SignIn.swift */; };
+		CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A729C468ED009699F8 /* MainMenuView.swift */; };
+		CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A929C57FA4009699F8 /* HalfBubble.swift */; };
+		CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */; };
+		CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */; };
+		CBDB27282989B1390044BA10 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27272989B1390044BA10 /* SignUp.swift */; };
+		CBDB272A2989B1390044BA10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBDB27292989B1390044BA10 /* Assets.xcassets */; };
+		CBDB272D2989B1390044BA10 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBDB272C2989B1390044BA10 /* Preview Assets.xcassets */; };
+		CBDB27372989B1390044BA10 /* BurritoBistroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27362989B1390044BA10 /* BurritoBistroTests.swift */; };
+		CBDB27412989B1390044BA10 /* BurritoBistroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27402989B1390044BA10 /* BurritoBistroUITests.swift */; };
+		CBDB27432989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27422989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CBDB27332989B1390044BA10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBDB271A2989B1390044BA10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBDB27212989B1390044BA10;
+			remoteInfo = BurritoBistro;
+		};
+		CBDB273D2989B1390044BA10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBDB271A2989B1390044BA10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBDB27212989B1390044BA10;
+			remoteInfo = BurritoBistro;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetMod.swift; sourceTree = "<group>"; };
+		CB9FAA182A186CD500E0CDFC /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
+		CBA161A429C30377009699F8 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		CBA161A729C468ED009699F8 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		CBA161A929C57FA4009699F8 /* HalfBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBubble.swift; sourceTree = "<group>"; };
+		CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcaveConvexTop.swift; sourceTree = "<group>"; };
+		CBDB27222989B1390044BA10 /* BurritoBistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BurritoBistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroApp.swift; sourceTree = "<group>"; };
+		CBDB27272989B1390044BA10 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		CBDB27292989B1390044BA10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CBDB272C2989B1390044BA10 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CBDB27322989B1390044BA10 /* BurritoBistroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BurritoBistroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBDB27362989B1390044BA10 /* BurritoBistroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroTests.swift; sourceTree = "<group>"; };
+		CBDB273C2989B1390044BA10 /* BurritoBistroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BurritoBistroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBDB27402989B1390044BA10 /* BurritoBistroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroUITests.swift; sourceTree = "<group>"; };
+		CBDB27422989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CBDB271F2989B1390044BA10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB272F2989B1390044BA10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB27392989B1390044BA10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB9FAA172A186A7200E0CDFC /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				CBA161A729C468ED009699F8 /* MainMenuView.swift */,
+				CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */,
+				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		CBA161A629C30392009699F8 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CBA161A429C30377009699F8 /* SignIn.swift */,
+				CBDB27272989B1390044BA10 /* SignUp.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		CBCFAE0129A30FF400BD2B2A /* ShapeAssets */ = {
+			isa = PBXGroup;
+			children = (
+				CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */,
+				CBA161A929C57FA4009699F8 /* HalfBubble.swift */,
+			);
+			path = ShapeAssets;
+			sourceTree = "<group>";
+		};
+		CBDB27192989B1390044BA10 = {
+			isa = PBXGroup;
+			children = (
+				CBDB27242989B1390044BA10 /* BurritoBistro */,
+				CBDB27352989B1390044BA10 /* BurritoBistroTests */,
+				CBDB273F2989B1390044BA10 /* BurritoBistroUITests */,
+				CBDB27232989B1390044BA10 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CBDB27232989B1390044BA10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CBDB27222989B1390044BA10 /* BurritoBistro.app */,
+				CBDB27322989B1390044BA10 /* BurritoBistroTests.xctest */,
+				CBDB273C2989B1390044BA10 /* BurritoBistroUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBDB27242989B1390044BA10 /* BurritoBistro */ = {
+			isa = PBXGroup;
+			children = (
+				CB9FAA172A186A7200E0CDFC /* Menu */,
+				CBA161A629C30392009699F8 /* Auth */,
+				CBCFAE0129A30FF400BD2B2A /* ShapeAssets */,
+				CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */,
+				CBDB27292989B1390044BA10 /* Assets.xcassets */,
+				CBDB272B2989B1390044BA10 /* Preview Content */,
+			);
+			path = BurritoBistro;
+			sourceTree = "<group>";
+		};
+		CBDB272B2989B1390044BA10 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CBDB272C2989B1390044BA10 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CBDB27352989B1390044BA10 /* BurritoBistroTests */ = {
+			isa = PBXGroup;
+			children = (
+				CBDB27362989B1390044BA10 /* BurritoBistroTests.swift */,
+			);
+			path = BurritoBistroTests;
+			sourceTree = "<group>";
+		};
+		CBDB273F2989B1390044BA10 /* BurritoBistroUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CBDB27402989B1390044BA10 /* BurritoBistroUITests.swift */,
+				CBDB27422989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift */,
+			);
+			path = BurritoBistroUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CBDB27212989B1390044BA10 /* BurritoBistro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBDB27462989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistro" */;
+			buildPhases = (
+				CBDB271E2989B1390044BA10 /* Sources */,
+				CBDB271F2989B1390044BA10 /* Frameworks */,
+				CBDB27202989B1390044BA10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BurritoBistro;
+			productName = BurritoBistro;
+			productReference = CBDB27222989B1390044BA10 /* BurritoBistro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CBDB27312989B1390044BA10 /* BurritoBistroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBDB27492989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroTests" */;
+			buildPhases = (
+				CBDB272E2989B1390044BA10 /* Sources */,
+				CBDB272F2989B1390044BA10 /* Frameworks */,
+				CBDB27302989B1390044BA10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBDB27342989B1390044BA10 /* PBXTargetDependency */,
+			);
+			name = BurritoBistroTests;
+			productName = BurritoBistroTests;
+			productReference = CBDB27322989B1390044BA10 /* BurritoBistroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CBDB273B2989B1390044BA10 /* BurritoBistroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBDB274C2989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroUITests" */;
+			buildPhases = (
+				CBDB27382989B1390044BA10 /* Sources */,
+				CBDB27392989B1390044BA10 /* Frameworks */,
+				CBDB273A2989B1390044BA10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBDB273E2989B1390044BA10 /* PBXTargetDependency */,
+			);
+			name = BurritoBistroUITests;
+			productName = BurritoBistroUITests;
+			productReference = CBDB273C2989B1390044BA10 /* BurritoBistroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CBDB271A2989B1390044BA10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					CBDB27212989B1390044BA10 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					CBDB27312989B1390044BA10 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = CBDB27212989B1390044BA10;
+					};
+					CBDB273B2989B1390044BA10 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = CBDB27212989B1390044BA10;
+					};
+				};
+			};
+			buildConfigurationList = CBDB271D2989B1390044BA10 /* Build configuration list for PBXProject "BurritoBistro" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CBDB27192989B1390044BA10;
+			productRefGroup = CBDB27232989B1390044BA10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CBDB27212989B1390044BA10 /* BurritoBistro */,
+				CBDB27312989B1390044BA10 /* BurritoBistroTests */,
+				CBDB273B2989B1390044BA10 /* BurritoBistroUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CBDB27202989B1390044BA10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBDB272D2989B1390044BA10 /* Preview Assets.xcassets in Resources */,
+				CBDB272A2989B1390044BA10 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB27302989B1390044BA10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB273A2989B1390044BA10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CBDB271E2989B1390044BA10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBDB27282989B1390044BA10 /* SignUp.swift in Sources */,
+				CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */,
+				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
+				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
+				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
+				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
+				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
+				CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB272E2989B1390044BA10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBDB27372989B1390044BA10 /* BurritoBistroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CBDB27382989B1390044BA10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CBDB27412989B1390044BA10 /* BurritoBistroUITests.swift in Sources */,
+				CBDB27432989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CBDB27342989B1390044BA10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBDB27212989B1390044BA10 /* BurritoBistro */;
+			targetProxy = CBDB27332989B1390044BA10 /* PBXContainerItemProxy */;
+		};
+		CBDB273E2989B1390044BA10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CBDB27212989B1390044BA10 /* BurritoBistro */;
+			targetProxy = CBDB273D2989B1390044BA10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CBDB27442989B1390044BA10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CBDB27452989B1390044BA10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CBDB27472989B1390044BA10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BurritoBistro/Preview Content\"";
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CBDB27482989B1390044BA10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BurritoBistro/Preview Content\"";
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CBDB274A2989B1390044BA10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BurritoBistro.app/BurritoBistro";
+			};
+			name = Debug;
+		};
+		CBDB274B2989B1390044BA10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BurritoBistro.app/BurritoBistro";
+			};
+			name = Release;
+		};
+		CBDB274D2989B1390044BA10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BurritoBistro;
+			};
+			name = Debug;
+		};
+		CBDB274E2989B1390044BA10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4H7C7Q6529;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TheGlobalJournal.JournalU.BurritoBistroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BurritoBistro;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CBDB271D2989B1390044BA10 /* Build configuration list for PBXProject "BurritoBistro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBDB27442989B1390044BA10 /* Debug */,
+				CBDB27452989B1390044BA10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBDB27462989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBDB27472989B1390044BA10 /* Debug */,
+				CBDB27482989B1390044BA10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBDB27492989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBDB274A2989B1390044BA10 /* Debug */,
+				CBDB274B2989B1390044BA10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBDB274C2989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBDB274D2989B1390044BA10 /* Debug */,
+				CBDB274E2989B1390044BA10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CBDB271A2989B1390044BA10 /* Project object */;
+}
