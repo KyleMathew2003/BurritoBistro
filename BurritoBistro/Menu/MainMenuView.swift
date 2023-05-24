@@ -9,25 +9,64 @@ import SwiftUI
 
 struct MainMenu: View {
     
+    //View Settings
     @State private var OutsideSpacing = CGFloat(10)
     @State private var AddButtonSpacing = CGFloat(24)
     @State private var BubbleContentSpacing = CGFloat(20)
     @State private var BubbleOpcaity = 0.5
     @State private var shoppingCount:Int = 1
-
-    
     @State private var CheckOutBubblePadding = CGFloat(35)
-    
-    @State private var MenuItemIndex = 0
     @State private var MenuHeight = CGFloat(60)
     @State private var MenuSpacing = CGFloat(20)
+    //
     
+    //Scroll Logic variables
     @State private var scrollTarget: Int?
+    
+    @State private var CurrentSection: MenuOptions = .entrees
+    
+    @State private var visible: Bool = true
+    
+    @State private var total: Int = 0
+    
+    @State private var VisibleIndexArray:[Int] = [Int](repeating: -1, count: MenuOptions.allCases.count)
+    //
+    
+    
     
     let option: MenuOptions
     
-    @State private var currentOption: MenuOptions = .entrees
-        
+    
+    //delayToggle() work around will need adjustment for larger MenuOption enum counts
+    //
+    //This exists to turn off the geometry reader when a menu option is pressed
+    // this is because clicking an option scrolls the vertical menu to the correct section
+    // however doing so, would trigger geom reader to update VisibleIndexArray, which in turn changes
+    // the CurrentSection, i.e. without the delay toggle:
+    //
+    // 1) clicking drinks from entrees, -> curr section would updated, to select drinks, thus
+    // bolding/horzscrollng to drinks
+    //
+    // 2) the vertical scroll happens concurrently, however, as it goes to drinks, it must pass sides
+    //
+    // 3) this would trigger the geom reader for the sides, thus updating the curr section back to sides
+    // thus highlighting and attempting to horzscroll there, but finally, when the
+    // drinks section is reached, the geom reader is triggered, updating correctly again
+    
+    //This ends up appearing like a click selects drinks, then staggers back to sides,
+    // and back to drinks again
+    
+    //ideally the delay toggle works as long as the animation plays, but there's no direct call back in
+    //swift, alternate is manually toggling for a certain amount of time, which also cannot be
+    // controlled through the duration param of withAnimation, for some reason scrollTo does not
+    // get affected by it
+
+    private func delayToggle() async {
+        visible.toggle()
+        try? await Task.sleep(nanoseconds: 300000000)
+        visible.toggle()
+    }
+            
     var body: some View {
         VStack {
             VStack(spacing:0){
@@ -36,7 +75,7 @@ struct MainMenu: View {
                 VStack(alignment:.leading,spacing:5){
                     HStack {
                         Button {
-                           
+                            
                         }label:{
                             HStack{
                                 Text("Search")
@@ -54,6 +93,7 @@ struct MainMenu: View {
                         Spacer()
                         
                         Button {
+                            print(VisibleIndexArray)
                         }label:{
                             Image(systemName: "gear")
                                 .padding(OutsideSpacing)
@@ -78,18 +118,28 @@ struct MainMenu: View {
                         HStack(spacing:0){
                             ForEach(MenuOptions.allCases, id: \.self){ item in
                                 Button{
-                                    MenuItemIndex = item.index
-                                    withAnimation(.default){
-                                        hMenuVal.scrollTo(item.index,anchor:.bottomLeading)
+                                    
+                                    if visible == true {
+                                    
+                                    Task{
+                                    await delayToggle()
                                     }
+                                    
+                                    CurrentSection = MenuOptions.allCases[item.index]
+
                                     scrollTarget = item.index
+                                    }
+                                    
+                                    
+                                    
+
                                 }label: {
                                     VStack(spacing:5){
                                         Text("\(item.title)")
-                                            .fontWeight(MenuItemIndex == item.index ? .bold:.regular)
-                                            .opacity(MenuItemIndex == item.index ? 1:0.5)
+                                            .fontWeight(CurrentSection.index == item.index ? .bold:.regular)
+                                            .opacity(CurrentSection.index == item.index ? 1:0.5)
                                         Divider()
-                                            .frame(height: MenuItemIndex == item.index ? 3:0.5)
+                                            .frame(height: CurrentSection.index == item.index ? 3:0.5)
                                             .overlay(Color.white)
                                     }
                                 }
@@ -98,9 +148,22 @@ struct MainMenu: View {
                             }
                             
                             Spacer(minLength: UIScreen.main.bounds.width-50)
-
-                        
                     }
+                        
+                        .onChange(of: VisibleIndexArray){ target in
+                            withAnimation(Animation.easeIn(duration: 0.0001)){
+                                hMenuVal.scrollTo(target.max()!,anchor: .bottomLeading)
+                                CurrentSection = MenuOptions.allCases[target.max()!]
+                            }
+                        }
+                        .onChange(of: CurrentSection){ target in
+                            withAnimation(Animation.easeIn(duration: 0.0001)){
+                                hMenuVal.scrollTo(target.index,anchor: .bottomLeading)
+
+                            }
+                        }
+                        
+                        
                     }
                 }
                 .padding(.vertical)
@@ -110,11 +173,15 @@ struct MainMenu: View {
                 .background(
                     Color.black
                         .opacity(BubbleOpcaity))
+                
+                //below is scroll sections and checkout overlayed
+                
 
                 ZStack {
+                    //scroll sections
                     ScrollViewReader { vMenuVal in
                         ScrollView (showsIndicators: false){
-                            VStack {
+                            VStack() {
                                 ForEach(MenuOptions.allCases, id: \.self){ item in
                                 VStack {
                                     VStack (spacing:0){
@@ -187,23 +254,30 @@ struct MainMenu: View {
                                     }
                                 }
                                 .id(item.index)
+                                .modifier(OffsetMod(option: item, total: $total, visible: $visible, VisibleIndexArray: $VisibleIndexArray))
                                 }
-                                .modifier(OffsetMod(option: .entrees))
+                                .onChange(of: scrollTarget){ target in
+                                    if let target = target {
+                                        scrollTarget = nil
+                                        CurrentSection = MenuOptions.allCases[target]
+
+
+                                        
+                                        
+                                        withAnimation(Animation.easeIn(duration: 0.0001)){
+                                            vMenuVal.scrollTo(target,anchor: .top)
+                                        }
+                                        
+                                    }
+                                    
+                                }
                                 
                                 Spacer(minLength: 500)
                             }
-                            .onChange(of: scrollTarget){ target in
-                                if let target = target {
-                                    scrollTarget = nil
-                                    
-                                    withAnimation{
-                                        vMenuVal.scrollTo(target,anchor: .top)
-                                    }
-                                }
-                                
-                            }
+                            
                             
                         }
+                        .coordinateSpace(name: "scroll")
                         
                         //end of ScrollView
                         .padding(.horizontal,OutsideSpacing)
@@ -268,6 +342,7 @@ struct MainMenu: View {
 
     }
 }
+
 
 
 struct MainView_Previews: PreviewProvider {

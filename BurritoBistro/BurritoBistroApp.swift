@@ -11,7 +11,7 @@ import SwiftUI
 struct BurritoBistroApp: App {
     var body: some Scene {
         WindowGroup {
-            MainMenu()
+            MainMenu(option: .entrees)
         }
     }
 }
