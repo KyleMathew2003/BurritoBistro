@@ -32,12 +32,16 @@ enum MenuOptions: Int, CaseIterable {
         }
     }
 }
-struct MenuItemDetails: Identifiable {
+struct MenuItemDetails: Identifiable, Hashable {
     var id = UUID().uuidString
     let foodName: String
     let description: String
     let price: Int
     let group: MenuOptions
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
 }
 
 var MenuItems: [MenuItemDetails] = [

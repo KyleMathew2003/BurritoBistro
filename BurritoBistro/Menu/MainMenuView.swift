@@ -33,6 +33,7 @@ struct MainMenu: View {
     //
     
     
+    @State private var Cart: [MenuItemDetails:Int] = [:]
     
     let option: MenuOptions
     
@@ -75,7 +76,6 @@ struct MainMenu: View {
                 VStack(alignment:.leading,spacing:5){
                     HStack {
                         Button {
-                            
                         }label:{
                             HStack{
                                 Text("Search")
@@ -204,7 +204,14 @@ struct MainMenu: View {
                                                 $0.group == item
                                             }){ items in
                                                 Button{
-                                                        
+                                                    if !Cart.contains(where: { $0.key == items }) {
+                                                        Cart[items] = 1
+                                                    } else{
+                                                        Cart[items]! += 1
+                                                    }
+                                                    
+                                                    print(Cart)
+
                                                 }label:{
                                                     VStack(alignment:.leading,spacing:5){
                                                         HStack {

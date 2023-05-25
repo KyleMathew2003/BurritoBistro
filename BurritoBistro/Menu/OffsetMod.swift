@@ -34,7 +34,7 @@ struct OffsetMod: ViewModifier {
             .overlay(
                 
                 GeometryReader { proxy in
-                    Color.red.opacity(0.5)
+                    Color.clear.opacity(0.5)
                         .preference(key: OffsetKey.self, value: proxy.frame(in: .named("scroll")))
                 }
             )
