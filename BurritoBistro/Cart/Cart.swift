@@ -7,14 +7,55 @@
 
 import SwiftUI
 
-struct Cart: View {
+struct CartView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            VStack(spacing:0){
+                HStack{
+                    ZStack{
+                        HStack{
+                    Button{
+                        dismiss()
+                    }label:{
+                        Image(systemName: "xmark")
+                            .foregroundColor(.white)
+                    }
+
+                    Spacer()
+                        }
+                        Text("Check Out")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding()
+                .padding(.bottom,10)
+                .background(
+                    HalfBubbleBottom(radius: 20)
+                        .foregroundColor(.black)
+                        .opacity(0.5)
+                        .ignoresSafeArea()
+                    
+                )
+                Text("HAsubd")
+                Spacer()
+            }
+            VStack{
+                Spacer()
+                Text("man")
+            }
+            .ignoresSafeArea()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color("bgc"))
     }
 }
 
-struct Cart_Previews: PreviewProvider {
+struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        Cart()
+        CartView()
     }
 }

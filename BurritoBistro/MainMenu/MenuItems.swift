@@ -109,6 +109,23 @@ var MenuItems: [MenuFoodItems] = [
                 section_Option: ["Soda","Drink"])
         ])
     ),
+    .init(
+        foodName: "Sam's Smash-Burger",
+        
+        MenuItemDetails: .init(
+            description: "A Beutiful piece of thrillingly delicious Burger",
+            price: 7,
+            group: .entrees),
+        
+        Ingredients: .init(IngredientOptions: [
+            .init(
+                section: "Toppings",
+                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
+            .init(
+                section: "Combo?",
+                section_Option: ["Soda","Drink"])
+        ])
+    ),
     
     .init(
         foodName: "Mashallah Masala Fries",

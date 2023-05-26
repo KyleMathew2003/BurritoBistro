@@ -66,6 +66,13 @@ struct MainMenu: View {
         try? await Task.sleep(nanoseconds: 300000000)
         visible.toggle()
     }
+    private func PriceFormat(Price: Float) -> Any {
+        if floor(Price) == Price{
+            return Int(Price)
+        } else{
+            return round(Price*100)/100.0
+        }
+    }
             
     var body: some View {
         NavigationView{
@@ -220,6 +227,13 @@ struct MainMenu: View {
                                                                         .font(.title3)
                                                                         .fontWeight(.bold)
                                                                         .lineLimit(1)
+                                                                    Circle()
+                                                                        .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
+                                                                        .opacity(0.5)
+                                                                    Text("$\(items.MenuItemDetails.price, specifier: "%.2f")")
+                                                                        .font(.caption)
+                                                                        .frame(minWidth: 24, idealWidth: 24)
+                                                                        .opacity(0.5)
                                                                     Spacer()
                                                                     Text("+")
                                                                         .font(.body)
@@ -241,12 +255,6 @@ struct MainMenu: View {
                                                                     Text("\(items.MenuItemDetails.description)")
                                                                         .font(.caption)
                                                                         .lineLimit(3)
-                                                                    Spacer()
-                                                                    Text("$\(items.MenuItemDetails.price)")
-                                                                        .font(.caption)
-                                                                        .padding(4)
-                                                                        .frame(minWidth: 24, idealWidth: 24, alignment: .bottom)
-                                                                        .opacity(0.5)
                                                                 }
                                                             }
                                                             .foregroundColor(.white)
@@ -295,8 +303,9 @@ struct MainMenu: View {
                             VStack {
                                 Spacer()
                                 HStack {
-                                    Button {
-                                        
+                                    NavigationLink {
+                                        CartView()
+                                            .navigationBarHidden(true)
                                     }label:{
                                         HStack {
                                             Text("Check Out")
