@@ -19,7 +19,7 @@ struct OffsetKey: PreferenceKey{
 
 struct OffsetMod: ViewModifier {
     
-    let option: MenuOptions
+    let option: MenuTypes
     
     @Binding var total: Int
     
@@ -66,11 +66,4 @@ struct OffsetMod: ViewModifier {
     
     
 }
-struct OffsetMod_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView {
-            Text("Hello, world!")
-                .modifier(OffsetMod(option: .entrees, total: .constant(0),visible: .constant(true), VisibleIndexArray: .constant([-1,-1,-1,-1])))
-        }
-    }
-}
+

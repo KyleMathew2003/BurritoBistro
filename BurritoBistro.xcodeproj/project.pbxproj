@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB61C1862A1F0D140088607E /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61C1852A1F0D140088607E /* Cart.swift */; };
 		CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */; };
 		CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA182A186CD500E0CDFC /* MenuItems.swift */; };
 		CBA161A529C30377009699F8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A429C30377009699F8 /* SignIn.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB61C1852A1F0D140088607E /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetMod.swift; sourceTree = "<group>"; };
 		CB9FAA182A186CD500E0CDFC /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		CBA161A429C30377009699F8 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -83,14 +85,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CB9FAA172A186A7200E0CDFC /* Menu */ = {
+		CB61C1842A1F0D030088607E /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				CB61C1852A1F0D140088607E /* Cart.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		CB9FAA172A186A7200E0CDFC /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
 				CBA161A729C468ED009699F8 /* MainMenuView.swift */,
 				CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */,
 				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
 			);
-			path = Menu;
+			path = MainMenu;
 			sourceTree = "<group>";
 		};
 		CBA161A629C30392009699F8 /* Auth */ = {
@@ -134,7 +144,8 @@
 		CBDB27242989B1390044BA10 /* BurritoBistro */ = {
 			isa = PBXGroup;
 			children = (
-				CB9FAA172A186A7200E0CDFC /* Menu */,
+				CB61C1842A1F0D030088607E /* Cart */,
+				CB9FAA172A186A7200E0CDFC /* MainMenu */,
 				CBA161A629C30392009699F8 /* Auth */,
 				CBCFAE0129A30FF400BD2B2A /* ShapeAssets */,
 				CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */,
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDB27282989B1390044BA10 /* SignUp.swift in Sources */,
+				CB61C1862A1F0D140088607E /* Cart.swift in Sources */,
 				CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */,
 				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
 				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
