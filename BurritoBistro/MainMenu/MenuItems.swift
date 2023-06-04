@@ -54,13 +54,14 @@ struct Ingredients:  Hashable{
 
 struct IngredientOptions: Hashable {
     let section: String
-    let section_Option: [String]
-
-  
-    
+    let section_Option: [IngredientSection_Options]
 }
 
-
+struct IngredientSection_Options: Hashable{
+    var isOn: Bool = false
+    let option: String
+    let optionPrice: Float
+}
 
 
 
@@ -84,12 +85,9 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(
-                section: "Toppings",
-                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-            .init(
-                section: "Combo?",
-                section_Option: ["Soda","Drink"])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
         ])
     ),
     .init(
@@ -101,12 +99,9 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(
-                section: "Toppings",
-                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-            .init(
-                section: "Combo?",
-                section_Option: ["Soda","Drink"])
+            .init(section: "Toppingzqowishda", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
         ])
     ),
     .init(
@@ -118,12 +113,9 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(
-                section: "Toppings",
-                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-            .init(
-                section: "Combo?",
-                section_Option: ["Soda","Drink"])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
         ])
     ),
     
@@ -136,14 +128,10 @@ var MenuItems: [MenuFoodItems] = [
             group: .sides),
         
         Ingredients: .init(IngredientOptions: [
-            .init(
-                section: "Toppings",
-                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-            .init(
-                section: "Combo?",
-                section_Option: ["Soda","Drink"])
-        ])
-    ),
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
+        ])    ),
     
     .init(
         foodName: "Dank Drank",
@@ -154,12 +142,9 @@ var MenuItems: [MenuFoodItems] = [
             group: .drinks),
         
         Ingredients: .init(IngredientOptions: [
-            .init(
-                section: "Toppings",
-                section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-            .init(
-                section: "Combo?",
-                section_Option: ["Soda","Drink"])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
         ])
     ),
     
@@ -172,12 +157,9 @@ var MenuItems: [MenuFoodItems] = [
                 group: .drinks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(
-                    section: "Toppings",
-                    section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-                .init(
-                    section: "Combo?",
-                    section_Option: ["Soda","Drink"])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
             ])
         ),
     
@@ -190,12 +172,9 @@ var MenuItems: [MenuFoodItems] = [
                 group: .snacks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(
-                    section: "Toppings",
-                    section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-                .init(
-                    section: "Combo?",
-                    section_Option: ["Soda","Drink"])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
             ])
         ),
         .init(
@@ -207,12 +186,9 @@ var MenuItems: [MenuFoodItems] = [
                 group: .snacks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(
-                    section: "Toppings",
-                    section_Option: ["Tomatoes","Pickles","Carmelized Onions"]),
-                .init(
-                    section: "Combo?",
-                    section_Option: ["Soda","Drink"])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+
             ])
         )
     

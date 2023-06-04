@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct CartVals: Equatable, Hashable{
+    var Item: MenuFoodItems
+    
+    var Count: Int
+}
+
 struct MainMenu: View {
     
     //View Settings
@@ -32,7 +38,11 @@ struct MainMenu: View {
     //
     
     
-    @State private var Cart: [MenuFoodItems:Int] = [:]
+    @State private var Cart: [CartVals] = []
+    
+    @State private var Tip: String = ""
+    
+    @State private var Menu = MenuItems
     
    
 
@@ -61,6 +71,13 @@ struct MainMenu: View {
     // controlled through the duration param of withAnimation, for some reason scrollTo does not
     // get affected by it
 
+    private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
+        guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
+                fatalError("Element not found in parentArray")
+            }
+            return $Menu[index]
+        }
+    
     private func delayToggle() async {
         visible.toggle()
         try? await Task.sleep(nanoseconds: 300000000)
@@ -73,6 +90,10 @@ struct MainMenu: View {
             return round(Price*100)/100.0
         }
     }
+    
+    var totalCount: Int {
+        Cart.reduce(0) { $0 + $1.Count}
+    }
             
     var body: some View {
         NavigationView{
@@ -83,6 +104,9 @@ struct MainMenu: View {
                         VStack(alignment:.leading,spacing:5){
                             HStack {
                                 Button {
+                                    print("")
+                                    print("Array")
+                                    print(Array(Cart))
                                 }label:{
                                     HStack{
                                         Text("Search")
@@ -100,7 +124,9 @@ struct MainMenu: View {
                                 Spacer()
                                 
                                 Button {
-                                    print(VisibleIndexArray)
+                                    print("")
+                                    print("DiCKt")
+                                    print((Cart))
                                 }label:{
                                     Image(systemName: "gear")
                                         .padding(OutsideSpacing)
@@ -211,15 +237,12 @@ struct MainMenu: View {
                                                     ForEach(MenuItems.filter{
                                                         $0.MenuItemDetails.group == item
                                                     }){ items in
-                                                        Button{
-                                                            if !Cart.contains(where: { $0.key == items }) {
-                                                                Cart[items] = 1
-                                                            } else{
-                                                                Cart[items]! += 1
-                                                            }
-                                                            
-                                                            print(Cart)
+                                                        
+                                                        // if else appends the food if its not there already, and adds 1 to the count if it is in there.
 
+                                                        NavigationLink{
+                                                            IngredientOptionsView(MenuFoodItem: self.binding(for: items))
+                                                                .navigationBarHidden(true)
                                                         }label:{
                                                             VStack(alignment:.leading,spacing:5){
                                                                 HStack {
@@ -303,31 +326,97 @@ struct MainMenu: View {
                             VStack {
                                 Spacer()
                                 HStack {
+                                    
+                                    if (!Cart.isEmpty) {
                                     NavigationLink {
-                                        CartView()
+                                        CartView(Cart: $Cart, Tip: $Tip)
                                             .navigationBarHidden(true)
                                     }label:{
                                         HStack {
                                             Text("Check Out")
                                                 .font(.title)
-                                                .fontWeight(.semibold)
+                                                .fontWeight(.light)
                                                 .foregroundColor(.white)
                                             .lineLimit(1)
-                                        
-                                            Text("\(Cart.count)")
-                                                .foregroundColor(.white)
-                                                .font(.title3)
-                                                .fontWeight(.semibold)
-                                                .padding(7)
-                                                .frame(
-                                                    minWidth:CheckOutBubblePadding,
-                                                    minHeight: CheckOutBubblePadding,
-                                                    idealHeight: CheckOutBubblePadding,
-                                                    maxHeight: CheckOutBubblePadding)
-                                                .background(
-                                                RoundedRectangle(cornerRadius: 25)
-                                                    .foregroundColor(.black)
-                                            )
+                                            
+                                            if Cart.count == 0 {
+                                                Text("0")
+                                                    .foregroundColor(.white)
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                    .padding(7)
+                                                    .frame(
+                                                        minWidth:CheckOutBubblePadding,
+                                                        minHeight: CheckOutBubblePadding,
+                                                        idealHeight: CheckOutBubblePadding,
+                                                        maxHeight: CheckOutBubblePadding)
+                                                    .background(
+                                                    RoundedRectangle(cornerRadius: 25)
+                                                        .foregroundColor(.black)
+                                                )
+                                                
+                                            } else{
+                                                Text("\(totalCount)")
+                                                    .foregroundColor(.white)
+                                                    .font(.title3)
+                                                    .fontWeight(.semibold)
+                                                    .padding(7)
+                                                    .frame(
+                                                        minWidth:CheckOutBubblePadding,
+                                                        minHeight: CheckOutBubblePadding,
+                                                        idealHeight: CheckOutBubblePadding,
+                                                        maxHeight: CheckOutBubblePadding)
+                                                    .background(
+                                                    RoundedRectangle(cornerRadius: 25)
+                                                        .foregroundColor(.black)
+                                                )
+                                            }
+                                        }
+                                    }
+                                    }else{
+                                        Button {
+                                           
+                                        }label:{
+                                            HStack {
+                                                Text("Check Out")
+                                                    .font(.title)
+                                                    .fontWeight(.light)
+                                                    .foregroundColor(.white)
+                                                .lineLimit(1)
+                                                
+                                                if Cart.count == 0 {
+                                                    Text("0")
+                                                        .foregroundColor(.white)
+                                                        .font(.title3)
+                                                        .fontWeight(.semibold)
+                                                        .padding(7)
+                                                        .frame(
+                                                            minWidth:CheckOutBubblePadding,
+                                                            minHeight: CheckOutBubblePadding,
+                                                            idealHeight: CheckOutBubblePadding,
+                                                            maxHeight: CheckOutBubblePadding)
+                                                        .background(
+                                                        RoundedRectangle(cornerRadius: 25)
+                                                            .foregroundColor(.black)
+                                                    )
+                                                    
+                                                } else{
+                                                    Text("\(totalCount)")
+                                                        .foregroundColor(.white)
+                                                        .font(.title3)
+                                                        .fontWeight(.semibold)
+                                                        .padding(7)
+                                                        .frame(
+                                                            minWidth:CheckOutBubblePadding,
+                                                            minHeight: CheckOutBubblePadding,
+                                                            idealHeight: CheckOutBubblePadding,
+                                                            maxHeight: CheckOutBubblePadding)
+                                                        .background(
+                                                        RoundedRectangle(cornerRadius: 25)
+                                                            .foregroundColor(.black)
+                                                    )
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -336,11 +425,14 @@ struct MainMenu: View {
                                 .background(
                                 RoundedRectangle(cornerRadius: 30)
                                     .foregroundColor(.teal)
+                                    .opacity(0.85)
                                 )
                                 .padding(40)
                                 .frame(width:UIScreen.main.bounds.width)
                                 .background(
                                     HalfBubbleTop(radius: 50)
+                                        .foregroundColor(Color("bubbleColor"))
+                                    
                                     )
                             }
                             .ignoresSafeArea()

@@ -42,7 +42,7 @@ struct OffsetMod: ViewModifier {
                 
                 if option.index != 0 {
 
-                    if proxy.minY <= 0{
+                    if proxy.minY <= 0.00001{
                         total = option.index
                     } else{
                         total = -1
@@ -52,8 +52,6 @@ struct OffsetMod: ViewModifier {
                 }
                 
                 VisibleIndexArray[option.index] = total
-                
-                
                 
                 
             }

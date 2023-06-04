@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB61C1862A1F0D140088607E /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61C1852A1F0D140088607E /* Cart.swift */; };
+		CB61C1862A1F0D140088607E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61C1852A1F0D140088607E /* CartView.swift */; };
 		CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */; };
 		CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA182A186CD500E0CDFC /* MenuItems.swift */; };
 		CBA161A529C30377009699F8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A429C30377009699F8 /* SignIn.swift */; };
 		CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A729C468ED009699F8 /* MainMenuView.swift */; };
 		CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A929C57FA4009699F8 /* HalfBubble.swift */; };
+		CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */; };
 		CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */; };
 		CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */; };
 		CBDB27282989B1390044BA10 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27272989B1390044BA10 /* SignUp.swift */; };
@@ -41,12 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB61C1852A1F0D140088607E /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		CB61C1852A1F0D140088607E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetMod.swift; sourceTree = "<group>"; };
 		CB9FAA182A186CD500E0CDFC /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		CBA161A429C30377009699F8 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		CBA161A729C468ED009699F8 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		CBA161A929C57FA4009699F8 /* HalfBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBubble.swift; sourceTree = "<group>"; };
+		CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientOptionsView.swift; sourceTree = "<group>"; };
 		CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcaveConvexTop.swift; sourceTree = "<group>"; };
 		CBDB27222989B1390044BA10 /* BurritoBistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BurritoBistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroApp.swift; sourceTree = "<group>"; };
@@ -88,7 +90,8 @@
 		CB61C1842A1F0D030088607E /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				CB61C1852A1F0D140088607E /* Cart.swift */,
+				CB61C1852A1F0D140088607E /* CartView.swift */,
+				CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -311,13 +314,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDB27282989B1390044BA10 /* SignUp.swift in Sources */,
-				CB61C1862A1F0D140088607E /* Cart.swift in Sources */,
+				CB61C1862A1F0D140088607E /* CartView.swift in Sources */,
 				CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */,
 				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
 				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
 				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
 				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
 				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
+				CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */,
 				CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

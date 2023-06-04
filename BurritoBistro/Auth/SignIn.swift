@@ -114,7 +114,7 @@ struct SignIn: View {
             Button(action: {
                 self.button.toggle()
             }){
-                Text("Join The Cult")
+                Text("JOIN US")
                     .fontWeight(button ? Font.Weight.medium : Font.Weight.bold)
                     .font(.title2)
                     .foregroundColor(.white)
