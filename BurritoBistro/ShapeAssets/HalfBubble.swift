@@ -32,10 +32,6 @@ struct HalfBubbleTop: Shape {
                 startAngle: Angle(degrees:-90),
                 endAngle: Angle(degrees: 0),
                 clockwise: false)
-            
-           
-            
-            
         }
     }
 }

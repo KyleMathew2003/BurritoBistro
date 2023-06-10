@@ -20,6 +20,31 @@ struct CartView: View {
     
     @Binding var Tip: String
     
+    public func addToCart(menuFoodItem: MenuFoodItems){
+        var isIn = false
+        for i in Cart{
+            if i.Item == menuFoodItem{
+                isIn = true
+                Cart[Cart.firstIndex(of: i)!].Count += 1
+
+            }
+        }
+        if isIn == false{
+            Cart.append(.init(Item: menuFoodItem, Count: 1))
+        }
+    }
+    
+    private func removeFromCart(menuFoodItem:MenuFoodItems){
+        for i in Cart{
+            if i.Item == menuFoodItem{
+                if i.Count == 1{
+                    Cart.remove(at: Cart.firstIndex(of: i)!)
+                } else{
+                    Cart[Cart.firstIndex(of: i)!].Count += -1
+                }
+            }
+        }
+    }
     
     private func returnTip(Tip: String) -> Float{
         if Float(Tip) == nil {
@@ -133,23 +158,35 @@ struct CartView: View {
                         
                         HStack {
                             if i.Count == 1{
-                            Image(systemName: "trash")
-                                    .resizable()
+                                Button {
+                                    removeFromCart(menuFoodItem: i.Item)
+                                } label:{
+                                    Image(systemName: "trash")
+                                        .resizable()
                                     .frame(width:ImageSize,height:ImageSize)
+                                }
 
                             } else{
-                                Image(systemName: "chevron.down")
-                                    .resizable()
+                                Button {
+                                    removeFromCart(menuFoodItem: i.Item)
+                                } label:{
+                                    Image(systemName: "chevron.down")
+                                        .resizable()
                                     .frame(width:ImageSize,height:ImageSize-5)
+                                }
 
 
                             }
                             Text("\(i.Count)")
                                 .font(.body)
                                 .foregroundColor(.black)
-                            Image(systemName: "chevron.up")
-                                .resizable()
+                            Button {
+                                addToCart(menuFoodItem: i.Item)
+                            } label:{
+                                Image(systemName: "chevron.up")
+                                    .resizable()
                                 .frame(width:ImageSize,height:ImageSize-5)
+                            }
                             
 
                         }

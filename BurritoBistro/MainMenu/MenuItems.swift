@@ -37,7 +37,7 @@ struct MenuFoodItems: Identifiable, Hashable{
     var id = UUID().uuidString
     let foodName: String
     let MenuItemDetails: MenuItemDetails
-    let Ingredients: Ingredients
+    var Ingredients: Ingredients
 }
 
 
@@ -48,13 +48,20 @@ struct MenuItemDetails: Hashable {
 }
 
 struct Ingredients:  Hashable{
-    let IngredientOptions: [IngredientOptions]
+    var IngredientOptions: [IngredientOptions]
     
 }
 
 struct IngredientOptions: Hashable {
     let section: String
-    let section_Option: [IngredientSection_Options]
+    var section_Option: [IngredientSection_Options]
+    let selectionLimit: Int
+    
+    var selectionCount: Int {
+        section_Option.reduce(0) {count, child in
+            return count + (child.isOn ? 1 : 0)
+        }
+    }
 }
 
 struct IngredientSection_Options: Hashable{
@@ -85,8 +92,8 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 2),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 2)
 
         ])
     ),
@@ -99,8 +106,8 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(section: "Toppingzqowishda", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+            .init(section: "Toppingzqowishda", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 1),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 1)
 
         ])
     ),
@@ -113,8 +120,8 @@ var MenuItems: [MenuFoodItems] = [
             group: .entrees),
         
         Ingredients: .init(IngredientOptions: [
-            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 1),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 2)
 
         ])
     ),
@@ -128,8 +135,8 @@ var MenuItems: [MenuFoodItems] = [
             group: .sides),
         
         Ingredients: .init(IngredientOptions: [
-            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 0),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 1)
 
         ])    ),
     
@@ -142,8 +149,8 @@ var MenuItems: [MenuFoodItems] = [
             group: .drinks),
         
         Ingredients: .init(IngredientOptions: [
-            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+            .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 1),
+            .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 2)
 
         ])
     ),
@@ -157,8 +164,8 @@ var MenuItems: [MenuFoodItems] = [
                 group: .drinks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 2),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 4)
 
             ])
         ),
@@ -172,8 +179,8 @@ var MenuItems: [MenuFoodItems] = [
                 group: .snacks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 2),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 2)
 
             ])
         ),
@@ -186,8 +193,8 @@ var MenuItems: [MenuFoodItems] = [
                 group: .snacks),
             
             Ingredients: .init(IngredientOptions: [
-                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)]),
-                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)])
+                .init(section: "Toppings", section_Option: [.init(option: "Tomatoes", optionPrice: 1.00),.init(option: "Onions", optionPrice: 0)], selectionLimit: 3),
+                .init(section: "Dineros", section_Option: [.init(option: "dasd", optionPrice: 0.00),.init(option: "ads", optionPrice: 0.10)], selectionLimit: 1)
 
             ])
         )

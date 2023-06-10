@@ -16,6 +16,42 @@ struct IngredientOptionsView: View {
     @State private var BubbleOpcaity = 0.5
     @State private var OutsideSpacing = CGFloat(10)
     @State private var CheckOutBubblePadding = CGFloat(35)
+    @State private var showAlert = false
+
+    
+    @Binding var Cart: [CartVals]
+
+    var subtotalCost: Float {
+        Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.MenuItemDetails.price}
+    }
+    
+    
+    
+    private func resetToggles(){
+        for i in MenuFoodItem.Ingredients.IngredientOptions.indices{
+            for j in MenuFoodItem.Ingredients.IngredientOptions[i].section_Option.indices{
+                MenuFoodItem.Ingredients.IngredientOptions[i].section_Option[j].isOn = false
+            }
+        }
+    }
+    
+    private func addToCart(menuFoodItem: MenuFoodItems){
+        var isIn = false
+        for i in Cart{
+            if i.Item == menuFoodItem{
+                isIn = true
+                Cart[Cart.firstIndex(of: i)!].Count += 1
+
+            }
+        }
+        if isIn == false{
+            Cart.append(.init(Item: menuFoodItem, Count: 1))
+        }
+    }
+    
+    
+    
+    
     
     var body: some View {
         
@@ -29,6 +65,7 @@ struct IngredientOptionsView: View {
                         HStack{
                     Button{
                         dismiss()
+                        resetToggles()
                     }label:{
                         Image(systemName: "xmark")
                             .foregroundColor(.white)
@@ -62,27 +99,83 @@ struct IngredientOptionsView: View {
                             .font(.title3)
                             .fontWeight(.bold)
                             .lineLimit(1)
-                        Circle()
-                            .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
-                            .opacity(0.5)
-                        Text("\(i.section)")
-                            .font(.caption)
-                            .frame(minWidth: 24, idealWidth: 24)
-                            .opacity(0.5)
+                        if i.selectionLimit != 0{
+                            Circle()
+                                .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
+                                .opacity(0.5)
+                            Text("Choose up to \(i.selectionLimit)")
+                                .lineLimit(1)
+                                .font(.caption)
+                                .frame(minWidth: 24, idealWidth: 24)
+                                .opacity(0.5)
+                        }
                         Spacer()
                         
                     }
                     .padding(.bottom,1)
-                    ForEach(i.section_Option, id:\.self){ j in
+                    Divider()
+                        .overlay(.gray)
+                        .opacity(0.4)
+                    
+                    //Creates the toggle for each ingredient option
+                    ForEach(i.section_Option.indices, id:\.self){ j in
                         VStack{
-                            Toggle(isOn: .constant(j.isOn)){
-                                Text(j.option)
+                            HStack{
+                                Text(i.section_Option[j].option)
+                                Spacer()
+                                if i.section_Option[j].optionPrice != 0{
+                                    Text("\(i.section_Option[j].optionPrice, specifier: "%.2f")")
+                                        .font(.caption)
+                                        .frame(minWidth: 24, idealWidth: 24)
+                                        .opacity(0.5)
+                                }
+                                if MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].selectionLimit == 0{
+                                    
+                                    Image(systemName: i.section_Option[j].isOn ? "checkmark.square.fill" : "square")
+                                                    .resizable()
+                                                    .frame(width: 20, height: 20)
+                                                    .foregroundColor(i.section_Option[j].isOn ? .white : .secondary)
+                                                    .padding(.leading,5)
+                                                    .onTapGesture {
+                                                        MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].section_Option[j].isOn.toggle()
+                                                    }
+                                } else{
+                                    if MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].selectionCount >= MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].selectionLimit && MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].section_Option[j].isOn == false
+                                    {
+                                        Image(systemName: i.section_Option[j].isOn ? "checkmark.square.fill" : "square")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(i.section_Option[j].isOn ? .white : .secondary)
+                                            .padding(.leading,5)
+                                            .onTapGesture {
+                                                showAlert = true
+                                            }
+                                            .alert(isPresented: $showAlert) {
+                                                Alert(title: Text("Dumb Bitch Alert"), message: Text("It says 'Choose up to \(i.selectionLimit)'"), dismissButton: .default(Text("I'm a dumb bitch")))
+                                            }
+                                        
+                                    } else {
+                                        Image(systemName: i.section_Option[j].isOn ? "checkmark.square.fill" : "square")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(i.section_Option[j].isOn ? .white : .secondary)
+                                            .padding(.leading,5)
+                                            .onTapGesture {
+                                                MenuFoodItem.Ingredients.IngredientOptions[MenuFoodItem.Ingredients.IngredientOptions.firstIndex(of: i)!].section_Option[j].isOn.toggle()
+                                            }
+                                    }
+                                }
+                                
+                            
+                                   
+                                    
+                                
+
                             }
                         }
                     }
 
-                    Divider()
-                        .overlay(.gray)
+                    
                 }
                 .foregroundColor(.white)
                 .padding(BubbleContentSpacing)
@@ -97,15 +190,31 @@ struct IngredientOptionsView: View {
                         
                         VStack(spacing:10){
                             HStack(spacing:0){
-                                Text("Total")
+                                Text("Item Total")
                                     .foregroundColor(.white)
-                                    .font(.title)
+                                    .font(.title2)
                                     .fontWeight(.semibold)
-                                Text(" (Tax Included)")
+                                Text("  (Tax Included)")
                                     .foregroundColor(.white)
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
+                                Text("\(MenuFoodItem.MenuItemDetails.price, specifier: "%.2f")")
+                                    .foregroundColor(.white)
+                                
+                            }
+                            HStack(spacing:0){
+                                Text("Cart SubTotal")
+                                    .foregroundColor(.white)
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                Text("  (Tax Included)")
+                                    .foregroundColor(.white)
+                                    .font(.title3)
+                                    .fontWeight(.light)
+                                Spacer()
+                                Text("\(subtotalCost+MenuFoodItem.MenuItemDetails.price, specifier: "%.2f")")
+                                    .foregroundColor(.white)
                                 
 
                             }
@@ -126,7 +235,10 @@ struct IngredientOptionsView: View {
             VStack {
                 Spacer()
                 HStack {
-                    NavigationLink {
+                    Button {
+                        dismiss()
+                        addToCart(menuFoodItem: MenuFoodItem)
+                        resetToggles()
                     }label:{
                         HStack {
                             Text("Add To Cart")
@@ -161,7 +273,7 @@ struct IngredientOptionsView: View {
 
 struct IngredientOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)])]))))
+        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)], selectionLimit: 1)]))), Cart: .constant([]))
         
     }
 }

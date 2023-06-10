@@ -241,7 +241,7 @@ struct MainMenu: View {
                                                         // if else appends the food if its not there already, and adds 1 to the count if it is in there.
 
                                                         NavigationLink{
-                                                            IngredientOptionsView(MenuFoodItem: self.binding(for: items))
+                                                            IngredientOptionsView(MenuFoodItem: self.binding(for: items),Cart:$Cart)
                                                                 .navigationBarHidden(true)
                                                         }label:{
                                                             VStack(alignment:.leading,spacing:5){
@@ -274,6 +274,7 @@ struct MainMenu: View {
                                                                 .padding(.bottom,1)
                                                                 Divider()
                                                                     .overlay(.gray)
+                                                                    .opacity(0.4)
                                                                 HStack(alignment: .top) {
                                                                     Text("\(items.MenuItemDetails.description)")
                                                                         .font(.caption)
