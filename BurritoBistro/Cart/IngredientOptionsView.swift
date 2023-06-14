@@ -62,7 +62,7 @@ struct IngredientOptionsView: View {
 
                     Spacer()
                         }
-                        Text("Check Out")
+                        Text("Add to Cart")
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
