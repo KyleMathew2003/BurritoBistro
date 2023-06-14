@@ -38,12 +38,19 @@ struct MenuFoodItems: Identifiable, Hashable{
     let foodName: String
     let MenuItemDetails: MenuItemDetails
     var Ingredients: Ingredients
+    
+    func sumIngredientPrice() -> Float {
+        let flattenedArray = Ingredients.IngredientOptions.flatMap { $0.section_Option }
+        let filteredArray = flattenedArray.filter { $0.isOn }
+        let sum = filteredArray.reduce(0) { $0 + $1.optionPrice }
+        return sum + MenuItemDetails.price
+    }
 }
 
 
 struct MenuItemDetails: Hashable {
     let description: String
-    let price: Float
+    var price: Float
     let group: MenuTypes
 }
 

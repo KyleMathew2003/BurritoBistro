@@ -10,6 +10,8 @@ import SwiftUI
 struct IngredientOptionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var MenuFoodItem: MenuFoodItems
+    @Binding var my_Cart: my_Cart
+
     
     @State private var ImageSize = CGFloat(12)
     @State private var BubbleContentSpacing = CGFloat(20)
@@ -18,15 +20,6 @@ struct IngredientOptionsView: View {
     @State private var CheckOutBubblePadding = CGFloat(35)
     @State private var showAlert = false
 
-    
-    @Binding var Cart: [CartVals]
-
-    var subtotalCost: Float {
-        Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.MenuItemDetails.price}
-    }
-    
-    
-    
     private func resetToggles(){
         for i in MenuFoodItem.Ingredients.IngredientOptions.indices{
             for j in MenuFoodItem.Ingredients.IngredientOptions[i].section_Option.indices{
@@ -37,21 +30,17 @@ struct IngredientOptionsView: View {
     
     private func addToCart(menuFoodItem: MenuFoodItems){
         var isIn = false
-        for i in Cart{
+        for i in my_Cart.Cart{
             if i.Item == menuFoodItem{
                 isIn = true
-                Cart[Cart.firstIndex(of: i)!].Count += 1
+                my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += 1
 
             }
         }
         if isIn == false{
-            Cart.append(.init(Item: menuFoodItem, Count: 1))
+            my_Cart.Cart.append(.init(Item: menuFoodItem, Count: 1))
         }
     }
-    
-    
-    
-    
     
     var body: some View {
         
@@ -199,7 +188,7 @@ struct IngredientOptionsView: View {
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
-                                Text("\(MenuFoodItem.MenuItemDetails.price, specifier: "%.2f")")
+                                Text("\(MenuFoodItem.sumIngredientPrice(), specifier: "%.2f")")
                                     .foregroundColor(.white)
                                 
                             }
@@ -213,7 +202,7 @@ struct IngredientOptionsView: View {
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
-                                Text("\(subtotalCost+MenuFoodItem.MenuItemDetails.price, specifier: "%.2f")")
+                                Text("\(my_Cart.subtotal()+MenuFoodItem.sumIngredientPrice(), specifier: "%.2f")")
                                     .foregroundColor(.white)
                                 
 
@@ -273,7 +262,7 @@ struct IngredientOptionsView: View {
 
 struct IngredientOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)], selectionLimit: 1)]))), Cart: .constant([]))
+        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)], selectionLimit: 1)]))), my_Cart: .constant(.init(Cart: [])))
         
     }
 }

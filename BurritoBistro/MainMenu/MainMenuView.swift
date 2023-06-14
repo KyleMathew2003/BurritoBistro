@@ -13,6 +13,25 @@ struct CartVals: Equatable, Hashable{
     var Count: Int
 }
 
+struct my_Cart{
+    var Cart: [CartVals] = []
+    
+    func subtotal() -> Float {
+        return Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.sumIngredientPrice()}
+        }
+    func optionsSelected() -> Bool {
+        let flatArray = Cart.flatMap{ $0.Item.Ingredients.IngredientOptions}
+        let flatterArray = flatArray.flatMap{$0.section_Option}
+        let filteredArray = flatterArray.filter{$0.isOn}
+        
+        if filteredArray.count != 0{
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
 struct MainMenu: View {
     
     //View Settings
@@ -37,9 +56,8 @@ struct MainMenu: View {
     @State private var VisibleIndexArray:[Int] = [Int](repeating: -1, count: MenuTypes.allCases.count)
     //
     
-    
-    @State private var Cart: [CartVals] = []
-    
+    @State private var my_Cart: my_Cart = .init(Cart: [])
+        
     @State private var Tip: String = ""
     
     @State private var Menu = MenuItems
@@ -92,7 +110,7 @@ struct MainMenu: View {
     }
     
     var totalCount: Int {
-        Cart.reduce(0) { $0 + $1.Count}
+        my_Cart.Cart.reduce(0) { $0 + $1.Count}
     }
             
     var body: some View {
@@ -106,7 +124,7 @@ struct MainMenu: View {
                                 Button {
                                     print("")
                                     print("Array")
-                                    print(Array(Cart))
+                                    print(Array(my_Cart.Cart))
                                 }label:{
                                     HStack{
                                         Text("Search")
@@ -126,7 +144,7 @@ struct MainMenu: View {
                                 Button {
                                     print("")
                                     print("DiCKt")
-                                    print((Cart))
+                                    print((my_Cart.Cart))
                                 }label:{
                                     Image(systemName: "gear")
                                         .padding(OutsideSpacing)
@@ -241,7 +259,7 @@ struct MainMenu: View {
                                                         // if else appends the food if its not there already, and adds 1 to the count if it is in there.
 
                                                         NavigationLink{
-                                                            IngredientOptionsView(MenuFoodItem: self.binding(for: items),Cart:$Cart)
+                                                            IngredientOptionsView(MenuFoodItem: self.binding(for: items),my_Cart: $my_Cart)
                                                                 .navigationBarHidden(true)
                                                         }label:{
                                                             VStack(alignment:.leading,spacing:5){
@@ -328,9 +346,9 @@ struct MainMenu: View {
                                 Spacer()
                                 HStack {
                                     
-                                    if (!Cart.isEmpty) {
+                                    if (!my_Cart.Cart.isEmpty) {
                                     NavigationLink {
-                                        CartView(Cart: $Cart, Tip: $Tip)
+                                        CartView(my_Cart: $my_Cart, Tip: $Tip)
                                             .navigationBarHidden(true)
                                     }label:{
                                         HStack {
@@ -340,7 +358,7 @@ struct MainMenu: View {
                                                 .foregroundColor(.white)
                                             .lineLimit(1)
                                             
-                                            if Cart.count == 0 {
+                                            if my_Cart.Cart.count == 0 {
                                                 Text("0")
                                                     .foregroundColor(.white)
                                                     .font(.title3)
@@ -385,7 +403,7 @@ struct MainMenu: View {
                                                     .foregroundColor(.white)
                                                 .lineLimit(1)
                                                 
-                                                if Cart.count == 0 {
+                                                if my_Cart.Cart.count == 0 {
                                                     Text("0")
                                                         .foregroundColor(.white)
                                                         .font(.title3)

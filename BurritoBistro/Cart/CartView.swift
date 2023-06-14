@@ -10,7 +10,8 @@ import Combine
 
 struct CartView: View {
     @Environment(\.dismiss) private var dismiss
-    @Binding var Cart: [CartVals]
+    
+    @Binding var my_Cart: my_Cart
     
     @State private var ImageSize = CGFloat(12)
     @State private var BubbleContentSpacing = CGFloat(20)
@@ -22,25 +23,25 @@ struct CartView: View {
     
     public func addToCart(menuFoodItem: MenuFoodItems){
         var isIn = false
-        for i in Cart{
+        for i in my_Cart.Cart{
             if i.Item == menuFoodItem{
                 isIn = true
-                Cart[Cart.firstIndex(of: i)!].Count += 1
+                my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += 1
 
             }
         }
         if isIn == false{
-            Cart.append(.init(Item: menuFoodItem, Count: 1))
+            my_Cart.Cart.append(.init(Item: menuFoodItem, Count: 1))
         }
     }
     
     private func removeFromCart(menuFoodItem:MenuFoodItems){
-        for i in Cart{
+        for i in my_Cart.Cart{
             if i.Item == menuFoodItem{
                 if i.Count == 1{
-                    Cart.remove(at: Cart.firstIndex(of: i)!)
+                    my_Cart.Cart.remove(at: my_Cart.Cart.firstIndex(of: i)!)
                 } else{
-                    Cart[Cart.firstIndex(of: i)!].Count += -1
+                    my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += -1
                 }
             }
         }
@@ -94,16 +95,6 @@ struct CartView: View {
         return input + ".00"
     }
     
-    
-
-    
-    
-    var subtotalCost: Float {
-        Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.MenuItemDetails.price}
-    }
-    
-    
-    
    
     var body: some View {
         ZStack{
@@ -139,7 +130,7 @@ struct CartView: View {
                 ScrollView{
                     VStack(){
                         
-                        ForEach(Cart, id:\.self){ i in
+                        ForEach(my_Cart.Cart, id:\.self){ i in
                 
                 VStack(alignment:.leading){
                     HStack {
@@ -150,7 +141,7 @@ struct CartView: View {
                         Circle()
                             .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
                             .opacity(0.5)
-                        Text("$\(i.Item.MenuItemDetails.price*Float(i.Count), specifier: "%.2f")")
+                        Text("$\(i.Item.sumIngredientPrice()*Float(i.Count), specifier: "%.2f")")
                             .font(.caption)
                             .frame(minWidth: 24, idealWidth: 24)
                             .opacity(0.5)
@@ -204,9 +195,22 @@ struct CartView: View {
                     )
                         
                     }
-                    .padding(.bottom,1)
-                    Divider()
-                        .overlay(.gray)
+                    .padding(.bottom,5)
+                    if my_Cart.optionsSelected(){
+                        Divider()
+                            .overlay(.gray)
+                            .opacity(0.4)
+                    }
+                    ForEach(i.Item.Ingredients.IngredientOptions, id:\.self) { j in
+                        ForEach(j.section_Option, id:\.self) { k in
+                            if k.isOn{
+                                Text(k.option)
+                                    .font(.caption)
+                                    .opacity(0.5)
+                            }
+                        }
+                    }
+                    
                 }
                 .foregroundColor(.white)
                 .padding(BubbleContentSpacing)
@@ -230,7 +234,7 @@ struct CartView: View {
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
-                                Text("\(subtotalCost, specifier: "%.2f")")
+                                Text("\(my_Cart.subtotal(), specifier: "%.2f")")
                                     .foregroundColor(.white)
 
                             }
@@ -281,7 +285,7 @@ struct CartView: View {
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
-                                Text("\(subtotalCost + returnTip(Tip: Tip), specifier: "%.2f")")
+                                Text("\(my_Cart.subtotal() + returnTip(Tip: Tip), specifier: "%.2f")")
                                     .foregroundColor(.white)
 
                             }
@@ -312,7 +316,7 @@ struct CartView: View {
                                 .foregroundColor(.white)
                             .lineLimit(1)
                         
-                            Text("\(subtotalCost, specifier: "%.2f")")
+                            Text("\(my_Cart.subtotal(), specifier: "%.2f")")
                                 .foregroundColor(.white)
                                 .font(.title3)
                                 .fontWeight(.semibold)
@@ -353,6 +357,6 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(Cart: .constant([]), Tip: .constant(""))
+        CartView(my_Cart: .constant(.init(Cart: [])), Tip: .constant(""))
     }
 }
