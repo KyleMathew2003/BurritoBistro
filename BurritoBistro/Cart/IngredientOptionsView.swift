@@ -11,7 +11,8 @@ struct IngredientOptionsView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var MenuFoodItem: MenuFoodItems
     @Binding var my_Cart: my_Cart
-
+    @Binding var cartView: Bool
+    @Binding var cur_CartItem: CartVals
     
     @State private var ImageSize = CGFloat(12)
     @State private var BubbleContentSpacing = CGFloat(20)
@@ -28,6 +29,20 @@ struct IngredientOptionsView: View {
         }
     }
     
+    private func replaceIngredients(){
+        for i in cur_CartItem.Item.Ingredients.IngredientOptions.indices{
+            for j in cur_CartItem.Item.Ingredients.IngredientOptions[i].section_Option.indices{
+                MenuFoodItem.Ingredients.IngredientOptions[i].section_Option[j].isOn = cur_CartItem.Item.Ingredients.IngredientOptions[i].section_Option[j].isOn
+            }
+            
+        }
+    }
+    
+    private func replaceCartItem(){
+        my_Cart.Cart[my_Cart.Cart.firstIndex(where:{ $0 == cur_CartItem})!] = .init(Item: MenuFoodItem, Count: my_Cart.Cart[my_Cart.Cart.firstIndex(where:{ $0 == cur_CartItem})!].Count)
+    }
+
+    
     private func addToCart(menuFoodItem: MenuFoodItems){
         var isIn = false
         for i in my_Cart.Cart{
@@ -43,9 +58,6 @@ struct IngredientOptionsView: View {
     }
     
     var body: some View {
-        
-        
-        
         ZStack{
             
             VStack(spacing:0){
@@ -154,12 +166,6 @@ struct IngredientOptionsView: View {
                                             }
                                     }
                                 }
-                                
-                            
-                                   
-                                    
-                                
-
                             }
                         }
                     }
@@ -226,15 +232,28 @@ struct IngredientOptionsView: View {
                 HStack {
                     Button {
                         dismiss()
-                        addToCart(menuFoodItem: MenuFoodItem)
+                        if cartView{
+                            replaceCartItem()
+                        } else{
+                            addToCart(menuFoodItem: MenuFoodItem)
+
+                        }
                         resetToggles()
                     }label:{
                         HStack {
-                            Text("Add To Cart")
-                                .font(.title)
-                                .fontWeight(.light)
-                                .foregroundColor(.white)
-                            .lineLimit(1)
+                            if cartView{
+                                Text("Change Options")
+                                    .font(.title)
+                                    .fontWeight(.light)
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                            } else{
+                                Text("Add To Cart")
+                                    .font(.title)
+                                    .fontWeight(.light)
+                                    .foregroundColor(.white)
+                                    .lineLimit(1)
+                            }
                         }
                     }
                 }
@@ -256,13 +275,15 @@ struct IngredientOptionsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("bgc"))
+        .onAppear(perform: replaceIngredients)
+        
     }
 }
 
 
 struct IngredientOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)], selectionLimit: 1)]))), my_Cart: .constant(.init(Cart: [])))
+        IngredientOptionsView(MenuFoodItem: .constant(.init(foodName: "bernies", MenuItemDetails: .init(description: "fsa", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "Helo", section_Option: [.init(option: "hello", optionPrice: 20)], selectionLimit: 1)]))), my_Cart: .constant(.init(Cart: [])), cartView: .constant(true), cur_CartItem: .constant(.init(Item: .init(foodName: "s", MenuItemDetails: .init(description: "", price: 2, group: .drinks), Ingredients: .init(IngredientOptions: [.init(section: "", section_Option: [.init(option: "", optionPrice: 2)], selectionLimit: 2)])), Count: 2)))
         
     }
 }

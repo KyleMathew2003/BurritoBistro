@@ -9,6 +9,15 @@ import SwiftUI
 import Combine
 
 struct CartView: View {
+    @State private var Menu = MenuItems
+
+    private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
+        guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
+                fatalError("Element not found in parentArray")
+            }
+            return $Menu[index]
+        }
+    
     @Environment(\.dismiss) private var dismiss
     
     @Binding var my_Cart: my_Cart
@@ -129,98 +138,107 @@ struct CartView: View {
                 
                 ScrollView{
                     VStack(){
-                        
                         ForEach(my_Cart.Cart, id:\.self){ i in
-                
-                VStack(alignment:.leading){
-                    HStack {
-                        Text("\(i.Item.foodName)")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .lineLimit(1)
-                        Circle()
-                            .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
-                            .opacity(0.5)
-                        Text("$\(i.Item.sumIngredientPrice()*Float(i.Count), specifier: "%.2f")")
-                            .font(.caption)
-                            .frame(minWidth: 24, idealWidth: 24)
-                            .opacity(0.5)
-                        Spacer()
-                        
-                        HStack {
-                            if i.Count == 1{
-                                Button {
-                                    removeFromCart(menuFoodItem: i.Item)
-                                } label:{
-                                    Image(systemName: "trash")
-                                        .resizable()
-                                    .frame(width:ImageSize,height:ImageSize)
-                                }
-
-                            } else{
-                                Button {
-                                    removeFromCart(menuFoodItem: i.Item)
-                                } label:{
-                                    Image(systemName: "chevron.down")
-                                        .resizable()
-                                    .frame(width:ImageSize,height:ImageSize-5)
-                                }
-
-
-                            }
-                            Text("\(i.Count)")
-                                .font(.body)
-                                .foregroundColor(.black)
-                            Button {
-                                addToCart(menuFoodItem: i.Item)
-                            } label:{
-                                Image(systemName: "chevron.up")
-                                    .resizable()
-                                .frame(width:ImageSize,height:ImageSize-5)
-                            }
+                            NavigationLink{
+                                IngredientOptionsView(
+                                    MenuFoodItem:
+                                        self.binding(for:
+                                                        MenuItems[MenuItems.firstIndex(where : {$0.foodName == i.Item.foodName})!])
+                                    ,my_Cart: $my_Cart, cartView: .constant(true),cur_CartItem: $my_Cart.Cart[my_Cart.Cart.firstIndex(where: {$0 == i })!])
+                                    .navigationBarHidden(true)
+                            }label:{
                             
-
-                        }
-                        .foregroundColor(.black)
-                        .frame(
-                            minHeight: 24,
-                            idealHeight: 24,
-                            maxHeight: 24)
-                        .padding(.horizontal,8)
-                        .padding(.vertical, 0)
-                        .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .foregroundColor(.white)
-                            .opacity(0.85)
-                    )
-                        
-                    }
-                    .padding(.bottom,5)
-                    if my_Cart.optionsSelected(){
-                        Divider()
-                            .overlay(.gray)
-                            .opacity(0.4)
-                    }
-                    ForEach(i.Item.Ingredients.IngredientOptions, id:\.self) { j in
-                        ForEach(j.section_Option, id:\.self) { k in
-                            if k.isOn{
-                                Text(k.option)
-                                    .font(.caption)
-                                    .opacity(0.5)
+                            VStack(alignment:.leading){
+                                HStack {
+                                    Text("\(i.Item.foodName)")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .lineLimit(1)
+                                    Circle()
+                                        .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
+                                        .opacity(0.5)
+                                    Text("$\(i.Item.sumIngredientPrice()*Float(i.Count), specifier: "%.2f")")
+                                        .font(.caption)
+                                        .frame(minWidth: 24, idealWidth: 24)
+                                        .opacity(0.5)
+                                    Spacer()
+                                    
+                                    HStack {
+                                        if i.Count == 1{
+                                            Button {
+                                                removeFromCart(menuFoodItem: i.Item)
+                                            } label:{
+                                                Image(systemName: "trash")
+                                                    .resizable()
+                                                    .frame(width:ImageSize,height:ImageSize)
+                                            }
+                                            
+                                        } else{
+                                            Button {
+                                                removeFromCart(menuFoodItem: i.Item)
+                                            } label:{
+                                                Image(systemName: "chevron.down")
+                                                    .resizable()
+                                                    .frame(width:ImageSize,height:ImageSize-5)
+                                            }
+                                            
+                                            
+                                        }
+                                        Text("\(i.Count)")
+                                            .font(.body)
+                                            .foregroundColor(.black)
+                                        Button {
+                                            addToCart(menuFoodItem: i.Item)
+                                        } label:{
+                                            Image(systemName: "chevron.up")
+                                                .resizable()
+                                                .frame(width:ImageSize,height:ImageSize-5)
+                                        }
+                                        
+                                        
+                                    }
+                                    .foregroundColor(.black)
+                                    .frame(
+                                        minHeight: 24,
+                                        idealHeight: 24,
+                                        maxHeight: 24)
+                                    .padding(.horizontal,8)
+                                    .padding(.vertical, 0)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .foregroundColor(.white)
+                                            .opacity(0.85)
+                                    )
+                                    
+                                }
+                                .padding(.bottom,5)
+                                if my_Cart.optionsSelected(){
+                                    Divider()
+                                        .overlay(.gray)
+                                        .opacity(0.4)
+                                }
+                                ForEach(i.Item.Ingredients.IngredientOptions, id:\.self) { j in
+                                    ForEach(j.section_Option, id:\.self) { k in
+                                        if k.isOn{
+                                            Text(k.option)
+                                                .font(.caption)
+                                                .opacity(0.5)
+                                        }
+                                    }
+                                }
+                                
                             }
+                            .foregroundColor(.white)
+                            .padding(BubbleContentSpacing)
+                            .background(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .opacity(BubbleOpcaity)
+                            )
+                            .padding(.horizontal,OutsideSpacing)
+                            
                         }
-                    }
-                    
-                }
-                .foregroundColor(.white)
-                .padding(BubbleContentSpacing)
-                .background(
-                RoundedRectangle(cornerRadius: 25)
-                    .opacity(BubbleOpcaity)
-            )
-                .padding(.horizontal,OutsideSpacing)
-                        
-                        
+                            .buttonStyle(.plain)
+
                         }
                         
                         VStack(spacing:10){
@@ -250,7 +268,7 @@ struct CartView: View {
                                             .foregroundColor(.white)
                                             .multilineTextAlignment(.trailing)
                                             .disabled(true)
-                                            
+                                        
                                     }
                                     .multilineTextAlignment(.trailing)
                                     .keyboardType(.numberPad)
@@ -268,8 +286,6 @@ struct CartView: View {
                                     .onSubmit {
                                         self.Tip = onSubmitInputSanitize(self.Tip)
                                     }
-                                   
-
                             }
                             Divider()
                                 .overlay(Color.white)
@@ -287,27 +303,21 @@ struct CartView: View {
                                 Spacer()
                                 Text("\(my_Cart.subtotal() + returnTip(Tip: Tip), specifier: "%.2f")")
                                     .foregroundColor(.white)
-
                             }
                         }
                         .padding(.horizontal,OutsideSpacing*2)
                         .padding(.top)
-
-                        
-                        
-                        
                     }
                     .padding(.top,OutsideSpacing)
-
                 Spacer()
                 }
-
             }
          
             VStack {
                 Spacer()
                 HStack {
                     NavigationLink {
+                        
                     }label:{
                         HStack {
                             Text("Place Order")
@@ -316,9 +326,8 @@ struct CartView: View {
                                 .foregroundColor(.white)
                             .lineLimit(1)
                         
-                            Text("\(my_Cart.subtotal(), specifier: "%.2f")")
+                            Text("\(my_Cart.subtotal() + returnTip(Tip: Tip), specifier: "%.2f")")
                                 .foregroundColor(.white)
-                                .font(.title3)
                                 .fontWeight(.semibold)
                                 .padding(7)
                                 .frame(
