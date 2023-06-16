@@ -141,10 +141,9 @@ struct MainMenu: View {
                                 }
                                 Spacer()
                                 
-                                Button {
-                                    print("")
-                                    print("DiCKt")
-                                    print((my_Cart.Cart))
+                                NavigationLink {
+                                    Settings()
+                                        .navigationBarHidden(true)
                                 }label:{
                                     Image(systemName: "gear")
                                         .padding(OutsideSpacing)

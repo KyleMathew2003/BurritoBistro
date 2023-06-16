@@ -210,14 +210,10 @@ struct IngredientOptionsView: View {
                                 Spacer()
                                 Text("\(my_Cart.subtotal()+MenuFoodItem.sumIngredientPrice(), specifier: "%.2f")")
                                     .foregroundColor(.white)
-                                
 
                             }
                         }
                         .padding(.horizontal,OutsideSpacing*2)
-
-                        
-                        
                         
                     }
                     .padding(.top,OutsideSpacing)

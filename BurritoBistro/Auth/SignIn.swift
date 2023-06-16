@@ -8,12 +8,45 @@
 import SwiftUI
 
 struct SignIn: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var Error = ["", "", "", ""]
+
     @State private var Pass:String = ""
-    @State private var User:String = ""
     @State private var Email:String = ""
-    @State var button: Bool = true
+    
+    @EnvironmentObject var viewModel: AuthManager
+    
+    @State var validButton: Bool = true
 
     let height = UIScreen.main.bounds.height
+    
+    func checkError() {
+        if Email.isEmpty{
+            Error[0] = "Please Put In An Email"
+        } else{
+            Error[0] = ""
+        }
+        if !Email.contains("@"){
+            Error[1] = "This Email Is Not Valid"
+        } else {
+            Error[1] = ""
+
+        }
+        if Pass.isEmpty{
+            Error[2] = "Please Put In A Password"
+        } else{
+            Error[2] = ""
+
+        }
+        if Pass.count < 6 {
+            Error[3] = "This Password Is Not Valid"
+        } else{
+            Error[3] = ""
+
+        }
+    }
+    
 
 
     var body: some View {
@@ -72,6 +105,17 @@ struct SignIn: View {
                         .frame(width:250)
                         .overlay(Color.white
                             .opacity(0.3))
+                    if !(Error[1] == ""){
+                        Text(Error[1])
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+                    if !(Error[0] == ""){
+                        Text(Error[0])
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+                   
                 }
                 .padding(.vertical,5)
 
@@ -89,6 +133,17 @@ struct SignIn: View {
                         .frame(width:250)
                         .overlay(Color.white
                             .opacity(0.3))
+                    if !(Error[3] == ""){
+                        Text(Error[3])
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+                    if !(Error[2] == ""){
+                        Text(Error[2])
+                            .font(.caption)
+                            .foregroundColor(.red)
+                    }
+
                 }
                 .padding(.vertical,5)
                 .padding(.bottom,5)
@@ -101,21 +156,33 @@ struct SignIn: View {
                     .opacity(0.8)
             )
             VStack(spacing:5){
-                Text("Not a member? Sign Up!")
-                    .foregroundColor(.white)
-                    .opacity(0.5)
-                Text("Forgot Password?")
-                    .foregroundColor(.white)
-                    .opacity(0.5)
+                Button{
+                    dismiss()
+                } label: {
+                    Text("Not a member? Sign Up!")
+                        .foregroundColor(.white)
+                        .opacity(0.5)
+                }
+                    Text("Forgot Password?")
+                        .foregroundColor(.white)
+                        .opacity(0.5)
             }
             .padding(10)
             Spacer()
             
             Button(action: {
-                self.button.toggle()
+                if (formIsValid){
+                    checkError()
+                    Task{
+                        try await viewModel.signIn(withEmail: Email, password: Pass)
+                    }
+                } else {
+                    checkError()
+                    
+                }
             }){
                 Text("JOIN US")
-                    .fontWeight(button ? Font.Weight.medium : Font.Weight.bold)
+                    .fontWeight(validButton ? Font.Weight.medium : Font.Weight.bold)
                     .font(.title2)
                     .foregroundColor(.white)
                     .padding()
@@ -124,7 +191,7 @@ struct SignIn: View {
                         RoundedRectangle(cornerRadius: 45)
                             .foregroundColor(.teal)
                     )
-                    .opacity(button ? 0.5:1)
+                    .opacity(validButton ? 0.5:1)
             }
             .frame(width: UIScreen.main.bounds.width)
             .padding(.vertical,20)
@@ -148,6 +215,15 @@ extension View {
         placeholder().opacity(shouldShow ? 0.3:0)
         self
     }
+    }
+}
+
+extension SignIn: AuthFormProtocol {
+    var formIsValid: Bool{
+        return !Email.isEmpty
+        && Email.contains("@")
+        && !Pass.isEmpty
+        && Pass.count >= 6
     }
 }
 
