@@ -9,6 +9,10 @@ import SwiftUI
 import Combine
 
 struct CartView: View {
+    @EnvironmentObject var Auth: AuthManager
+
+
+    
     @State private var Menu = MenuItems
 
     private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
@@ -29,32 +33,6 @@ struct CartView: View {
     @State private var CheckOutBubblePadding = CGFloat(35)
     
     @Binding var Tip: String
-    
-    public func addToCart(menuFoodItem: MenuFoodItems){
-        var isIn = false
-        for i in my_Cart.Cart{
-            if i.Item == menuFoodItem{
-                isIn = true
-                my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += 1
-
-            }
-        }
-        if isIn == false{
-            my_Cart.Cart.append(.init(Item: menuFoodItem, Count: 1))
-        }
-    }
-    
-    private func removeFromCart(menuFoodItem:MenuFoodItems){
-        for i in my_Cart.Cart{
-            if i.Item == menuFoodItem{
-                if i.Count == 1{
-                    my_Cart.Cart.remove(at: my_Cart.Cart.firstIndex(of: i)!)
-                } else{
-                    my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += -1
-                }
-            }
-        }
-    }
     
     private func returnTip(Tip: String) -> Float{
         if Float(Tip) == nil {
@@ -166,7 +144,7 @@ struct CartView: View {
                                     HStack {
                                         if i.Count == 1{
                                             Button {
-                                                removeFromCart(menuFoodItem: i.Item)
+                                                my_Cart.removeFromCart(menuFoodItem: i.Item)
                                             } label:{
                                                 Image(systemName: "trash")
                                                     .resizable()
@@ -175,7 +153,7 @@ struct CartView: View {
                                             
                                         } else{
                                             Button {
-                                                removeFromCart(menuFoodItem: i.Item)
+                                                my_Cart.removeFromCart(menuFoodItem: i.Item)
                                             } label:{
                                                 Image(systemName: "chevron.down")
                                                     .resizable()
@@ -188,7 +166,7 @@ struct CartView: View {
                                             .font(.body)
                                             .foregroundColor(.black)
                                         Button {
-                                            addToCart(menuFoodItem: i.Item)
+                                            my_Cart.addToCart(menuFoodItem: i.Item)
                                         } label:{
                                             Image(systemName: "chevron.up")
                                                 .resizable()
@@ -316,7 +294,12 @@ struct CartView: View {
             VStack {
                 Spacer()
                 HStack {
-                    NavigationLink {
+                    Button {
+                        let orderModel = OrderModel(Order: my_Cart, Tip: returnTip(Tip: Tip))
+                        let cur_Order = OrdersViewModel(my_Order: orderModel)
+                        Task{
+                            try await cur_Order.addOrder()
+                        }
                         
                     }label:{
                         HStack {

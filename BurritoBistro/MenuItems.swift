@@ -77,18 +77,6 @@ struct IngredientSection_Options: Hashable{
     let optionPrice: Float
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 var MenuItems: [MenuFoodItems] = [
     .init(
         foodName: "Bernardos Burrito",

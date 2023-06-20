@@ -10,7 +10,7 @@ import SwiftUI
 struct Settings: View {
     @Environment(\.dismiss) private var dismiss
     
-    @EnvironmentObject var viewModel: AuthManager
+    @EnvironmentObject var AuthManager: AuthManager
     
     var body: some View {
         
@@ -49,7 +49,8 @@ struct Settings: View {
                         .opacity(0.5)
                 )
             Button{
-                viewModel.signOut()
+                AuthManager.signOut()
+                
             }label: {
                 HStack{
                     Text("Sign Out")

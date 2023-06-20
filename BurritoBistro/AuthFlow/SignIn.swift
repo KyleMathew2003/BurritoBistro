@@ -17,8 +17,6 @@ struct SignIn: View {
     
     @EnvironmentObject var viewModel: AuthManager
     
-    @State var validButton: Bool = true
-
     let height = UIScreen.main.bounds.height
     
     func checkError() {
@@ -173,17 +171,18 @@ struct SignIn: View {
             Button(action: {
                 if (formIsValid){
                     checkError()
-                    Task{
-                        try await viewModel.signIn(withEmail: Email, password: Pass)
-                    }
+                        Task{
+                            try await viewModel.signIn(withEmail: Email, password: Pass)
+                        }
+                    
                 } else {
                     checkError()
                     
                 }
             }){
                 Text("JOIN US")
-                    .fontWeight(validButton ? Font.Weight.medium : Font.Weight.bold)
                     .font(.title2)
+                    .fontWeight(.light)
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 170)
@@ -191,7 +190,6 @@ struct SignIn: View {
                         RoundedRectangle(cornerRadius: 45)
                             .foregroundColor(.teal)
                     )
-                    .opacity(validButton ? 0.5:1)
             }
             .frame(width: UIScreen.main.bounds.width)
             .padding(.vertical,20)

@@ -250,26 +250,27 @@ struct SignUp: View {
                 .padding(10)
                 Spacer()
                 
-                Button(action: {
-                    if (formIsValid){
-                        checkError()
-                        Task{
-                            try await viewModel.createUser(withEmail:Email,
-                                                           password:Pass,
-                                                           firstName:First,
-                                                           lastName:Last
-                            )
+                Button{
+                        if (formIsValid){
+                            checkError()
+                                Task{
+                                    try await viewModel.createUser(withEmail:Email,
+                                                                   password:Pass,
+                                                                   firstName:First,
+                                                                   lastName:Last
+                                    )
+                                }
+                        } else {
+                            viewModel.inUseError = ""
+                            checkError()
+                            
                         }
-                        
-                    } else {
-                        checkError()
-                        
-                    }
-                   
-                }){
-                    Text("Join The Cult")
-                        .fontWeight(Font.Weight.bold)
+                    
+                }label:
+                {
+                    Text("JOIN THE CULT")
                         .font(.title2)
+                        .fontWeight(.light)
                         .foregroundColor(.white)
                         .padding()
                         .frame(width: 170)

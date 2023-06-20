@@ -10,6 +10,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import SwiftUI
 
 protocol AuthFormProtocol {
     var formIsValid: Bool{ get }
@@ -32,7 +33,9 @@ final class AuthManager: ObservableObject {
     func signIn(withEmail email: String, password: String) async throws{
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            self.userSession = result.user
+            withAnimation(.easeInOut){
+                self.userSession = result.user
+            }
             await fetchUser()
         }catch{
             print("DEBUG: Failed to sign in ERROR: \(error.localizedDescription)")
@@ -42,11 +45,19 @@ final class AuthManager: ObservableObject {
     func createUser(withEmail email: String, password: String, firstName: String, lastName: String) async throws{
         do{
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = result.user
+            withAnimation(.easeInOut){
+                self.userSession = result.user
+            }
             let user = Profile(id: result.user.uid, firstName: firstName, lastName: lastName, email: email)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            await fetchUser()
+            await fetchUser()            
+            let data = ["email": email.lowercased(), "firstName": firstName, "lastName": lastName, "uid": user.id]
+            Firestore.firestore().collection("users")
+                .document(user.id)
+                .setData(data){ _ in
+                    print("DEBUG: User data uploaded")
+                }
         } catch{
                 inUseError = "Email Already In Use"
             
@@ -57,8 +68,10 @@ final class AuthManager: ObservableObject {
     func signOut(){
         do{
             try Auth.auth().signOut()
-            self.userSession = nil
-            self.currentUser = nil 
+            withAnimation(.easeInOut){
+                self.userSession = nil
+                self.currentUser = nil
+            }
         } catch {
             print("DEBUG: FAILED to sign out with errror \(error.localizedDescription)")
         }

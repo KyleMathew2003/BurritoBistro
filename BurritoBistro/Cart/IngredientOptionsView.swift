@@ -21,57 +21,19 @@ struct IngredientOptionsView: View {
     @State private var CheckOutBubblePadding = CGFloat(35)
     @State private var showAlert = false
 
-    private func resetToggles(){
-        for i in MenuFoodItem.Ingredients.IngredientOptions.indices{
-            for j in MenuFoodItem.Ingredients.IngredientOptions[i].section_Option.indices{
-                MenuFoodItem.Ingredients.IngredientOptions[i].section_Option[j].isOn = false
-            }
-        }
-    }
-    
-    private func replaceIngredients(){
-        for i in cur_CartItem.Item.Ingredients.IngredientOptions.indices{
-            for j in cur_CartItem.Item.Ingredients.IngredientOptions[i].section_Option.indices{
-                MenuFoodItem.Ingredients.IngredientOptions[i].section_Option[j].isOn = cur_CartItem.Item.Ingredients.IngredientOptions[i].section_Option[j].isOn
-            }
-            
-        }
-    }
-    
-    private func replaceCartItem(){
-        my_Cart.Cart[my_Cart.Cart.firstIndex(where:{ $0 == cur_CartItem})!] = .init(Item: MenuFoodItem, Count: my_Cart.Cart[my_Cart.Cart.firstIndex(where:{ $0 == cur_CartItem})!].Count)
-    }
-
-    
-    private func addToCart(menuFoodItem: MenuFoodItems){
-        var isIn = false
-        for i in my_Cart.Cart{
-            if i.Item == menuFoodItem{
-                isIn = true
-                my_Cart.Cart[my_Cart.Cart.firstIndex(of: i)!].Count += 1
-
-            }
-        }
-        if isIn == false{
-            my_Cart.Cart.append(.init(Item: menuFoodItem, Count: 1))
-        }
-    }
-    
     var body: some View {
         ZStack{
-            
             VStack(spacing:0){
                 HStack{
                     ZStack{
                         HStack{
                     Button{
                         dismiss()
-                        resetToggles()
+                        my_Cart.resetToggles(MenuFoodItem: &MenuFoodItem)
                     }label:{
                         Image(systemName: "xmark")
                             .foregroundColor(.white)
                     }
-
                     Spacer()
                         }
                         Text("Add to Cart")
@@ -86,9 +48,7 @@ struct IngredientOptionsView: View {
                     HalfBubbleBottom(radius: 20)
                         .foregroundColor(Color("bubbleColor"))
                         .ignoresSafeArea()
-                    
                 )
-                
                 ScrollView{
                     VStack(){
                         
@@ -169,8 +129,6 @@ struct IngredientOptionsView: View {
                             }
                         }
                     }
-
-                    
                 }
                 .foregroundColor(.white)
                 .padding(BubbleContentSpacing)
@@ -179,8 +137,6 @@ struct IngredientOptionsView: View {
                     .opacity(BubbleOpcaity)
             )
                 .padding(.horizontal,OutsideSpacing)
-                        
-                        
                         }
                         
                         VStack(spacing:10){
@@ -208,8 +164,13 @@ struct IngredientOptionsView: View {
                                     .font(.title3)
                                     .fontWeight(.light)
                                 Spacer()
-                                Text("\(my_Cart.subtotal()+MenuFoodItem.sumIngredientPrice(), specifier: "%.2f")")
-                                    .foregroundColor(.white)
+                                if cartView{
+                                    Text("\(my_Cart.subtotal()+MenuFoodItem.sumIngredientPrice()-(cur_CartItem.Item.sumIngredientPrice()), specifier: "%.2f")")
+                                        .foregroundColor(.white)
+                                } else {
+                                    Text("\(my_Cart.subtotal()+MenuFoodItem.sumIngredientPrice(), specifier: "%.2f")")
+                                        .foregroundColor(.white)
+                                }
 
                             }
                         }
@@ -220,21 +181,18 @@ struct IngredientOptionsView: View {
 
                 Spacer()
                 }
-
             }
-         
             VStack {
                 Spacer()
                 HStack {
                     Button {
                         dismiss()
                         if cartView{
-                            replaceCartItem()
+                            my_Cart.replaceCartItem(cur_CartItem: cur_CartItem, MenuFoodItem: MenuFoodItem)
                         } else{
-                            addToCart(menuFoodItem: MenuFoodItem)
-
+                            my_Cart.addToCart(menuFoodItem: MenuFoodItem)
                         }
-                        resetToggles()
+                        my_Cart.resetToggles(MenuFoodItem: &MenuFoodItem)
                     }label:{
                         HStack {
                             if cartView{
@@ -271,7 +229,9 @@ struct IngredientOptionsView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("bgc"))
-        .onAppear(perform: replaceIngredients)
+        .onAppear{
+                    my_Cart.replaceIngredients(cur_CartItem: cur_CartItem, MenuFoodItem: &MenuFoodItem)
+        }
         
     }
 }

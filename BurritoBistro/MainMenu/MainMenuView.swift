@@ -7,32 +7,11 @@
 
 import SwiftUI
 
-struct CartVals: Equatable, Hashable{
-    var Item: MenuFoodItems
-    
-    var Count: Int
-}
 
-struct my_Cart{
-    var Cart: [CartVals] = []
-    
-    func subtotal() -> Float {
-        return Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.sumIngredientPrice()}
-        }
-    func optionsSelected() -> Bool {
-        let flatArray = Cart.flatMap{ $0.Item.Ingredients.IngredientOptions}
-        let flatterArray = flatArray.flatMap{$0.section_Option}
-        let filteredArray = flatterArray.filter{$0.isOn}
-        
-        if filteredArray.count != 0{
-            return true
-        } else {
-            return false
-        }
-    }
-}
 
 struct MainMenu: View {
+    @EnvironmentObject var AuthManager: AuthManager
+
     
     //View Settings
     @State private var OutsideSpacing = CGFloat(10)
@@ -101,17 +80,6 @@ struct MainMenu: View {
         try? await Task.sleep(nanoseconds: 300000000)
         visible.toggle()
     }
-    private func PriceFormat(Price: Float) -> Any {
-        if floor(Price) == Price{
-            return Int(Price)
-        } else{
-            return round(Price*100)/100.0
-        }
-    }
-    
-    var totalCount: Int {
-        my_Cart.Cart.reduce(0) { $0 + $1.Count}
-    }
             
     var body: some View {
         NavigationView{
@@ -123,8 +91,7 @@ struct MainMenu: View {
                             HStack {
                                 Button {
                                     print("")
-                                    print("Array")
-                                    print(Array(my_Cart.Cart))
+                                    print(AuthManager.userSession!.uid)
                                 }label:{
                                     HStack{
                                         Text("Search")
@@ -375,7 +342,7 @@ struct MainMenu: View {
                                                 )
                                                 
                                             } else{
-                                                Text("\(totalCount)")
+                                                Text("\(my_Cart.cartCount())")
                                                     .foregroundColor(.white)
                                                     .font(.title3)
                                                     .fontWeight(.semibold)
@@ -403,7 +370,7 @@ struct MainMenu: View {
                                                     .foregroundColor(.white)
                                                 .lineLimit(1)
                                                 
-                                                if my_Cart.Cart.count == 0 {
+                                                if my_Cart.cartCount() == 0 {
                                                     Text("0")
                                                         .foregroundColor(.white)
                                                         .font(.title3)
@@ -420,7 +387,7 @@ struct MainMenu: View {
                                                     )
                                                     
                                                 } else{
-                                                    Text("\(totalCount)")
+                                                    Text("\(my_Cart.cartCount())")
                                                         .foregroundColor(.white)
                                                         .font(.title3)
                                                         .fontWeight(.semibold)

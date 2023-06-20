@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB2BA2A32A3D3AAE00CBAF22 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */; };
+		CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */; };
+		CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */; };
+		CB2BA2AD2A3ED36600CBAF22 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2AC2A3ED36600CBAF22 /* OrdersView.swift */; };
 		CB61C1862A1F0D140088607E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61C1852A1F0D140088607E /* CartView.swift */; };
 		CB6E90402A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */; };
 		CB6E90412A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */; };
@@ -80,6 +84,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
+		CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
+		CB2BA2AC2A3ED36600CBAF22 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		CB61C1852A1F0D140088607E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6E90732A3C34AA008EF8EE /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -153,11 +161,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB2BA2A42A3DAFDC00CBAF22 /* FireStore */ = {
+			isa = PBXGroup;
+			children = (
+				CB2BA2A72A3EC11E00CBAF22 /* Orders */,
+			);
+			path = FireStore;
+			sourceTree = "<group>";
+		};
+		CB2BA2A72A3EC11E00CBAF22 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */,
+				CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */,
+				CB2BA2AC2A3ED36600CBAF22 /* OrdersView.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		CB61C1842A1F0D030088607E /* Cart */ = {
 			isa = PBXGroup;
 			children = (
 				CB61C1852A1F0D140088607E /* CartView.swift */,
 				CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */,
+				CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -182,12 +209,11 @@
 			children = (
 				CBA161A729C468ED009699F8 /* MainMenuView.swift */,
 				CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */,
-				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
 		};
-		CBA161A629C30392009699F8 /* Auth */ = {
+		CBA161A629C30392009699F8 /* AuthFlow */ = {
 			isa = PBXGroup;
 			children = (
 				CBA161A429C30377009699F8 /* SignIn.swift */,
@@ -195,7 +221,7 @@
 				CB6E90732A3C34AA008EF8EE /* AuthManager.swift */,
 				CB6E90772A3C3E66008EF8EE /* Profile.swift */,
 			);
-			path = Auth;
+			path = AuthFlow;
 			sourceTree = "<group>";
 		};
 		CBCFAE0129A30FF400BD2B2A /* ShapeAssets */ = {
@@ -231,11 +257,13 @@
 		CBDB27242989B1390044BA10 /* BurritoBistro */ = {
 			isa = PBXGroup;
 			children = (
+				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
+				CB2BA2A42A3DAFDC00CBAF22 /* FireStore */,
 				CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */,
 				CB6E907F2A3C50C1008EF8EE /* Settings */,
 				CB61C1842A1F0D030088607E /* Cart */,
 				CB9FAA172A186A7200E0CDFC /* MainMenu */,
-				CBA161A629C30392009699F8 /* Auth */,
+				CBA161A629C30392009699F8 /* AuthFlow */,
 				CBCFAE0129A30FF400BD2B2A /* ShapeAssets */,
 				CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */,
 				CB6E907B2A3C47E7008EF8EE /* MainFlow.swift */,
@@ -431,20 +459,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB2BA2A32A3D3AAE00CBAF22 /* CartModel.swift in Sources */,
 				CBDB27282989B1390044BA10 /* SignUp.swift in Sources */,
 				CB6E90782A3C3E66008EF8EE /* Profile.swift in Sources */,
 				CB61C1862A1F0D140088607E /* CartView.swift in Sources */,
 				CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */,
 				CB6E90812A3C50D0008EF8EE /* Settings.swift in Sources */,
 				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
+				CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */,
 				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
 				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
 				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
 				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
 				CB6E907C2A3C47E7008EF8EE /* MainFlow.swift in Sources */,
+				CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */,
 				CB6E90742A3C34AA008EF8EE /* AuthManager.swift in Sources */,
 				CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */,
 				CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */,
+				CB2BA2AD2A3ED36600CBAF22 /* OrdersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
