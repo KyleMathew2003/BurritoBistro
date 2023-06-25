@@ -10,18 +10,35 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+struct Order: Identifiable, Hashable, Equatable{
+    static func == (lhs: Order, rhs: Order) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id = UUID()
+    var orderModel: OrderModel
+    let timeStamp: Date
+    let total: Float
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(id)
+    }
+}
+
 struct foodIngredient{
     let food: String
     let options: [String]
+    let count: Int
 }
 
 class OrdersViewModel: ObservableObject{
+    private var authManager : AuthManager
     private var my_Order: OrderModel
     
-    init(my_Order: OrderModel) {
+    init(my_Order: OrderModel, auth: AuthManager) {
+        self.authManager = auth
         self.my_Order = my_Order
     }
-    
     
     
     
@@ -36,19 +53,20 @@ class OrdersViewModel: ObservableObject{
                 for j in (filteredArray){
                     options.append(j.option)
                 }
-                food.append(.init(food: i.Item.foodName, options: options))
+                food.append(.init(food: i.Item.foodName, options: options, count: i.Count))
             }
             var foodIngredientdict:[String:Any] = [:]
             for pair in food {
                 foodIngredientdict[UUID().uuidString] = [
-                    "key": pair.food,
-                    "values": pair.options
+                    "foodName": pair.food,
+                    "options": pair.options,
+                    "count": pair.count
                 ] as [String : Any]
             }
             
             let data = await ["orderNumber" : my_Order.OrderNumber,
                         "userID" : user.uid,
-                              "price" : (round(my_Order.Total * 100) / 100),
+                        "price" : (round(my_Order.Total * 100) / 100),
                         "food" : foodIngredientdict,
                         "orderStatus" : my_Order.OrderStatus.OrderStatus,
                         "timeStamp" : Timestamp(date: Date())] as [String : Any]
@@ -56,6 +74,22 @@ class OrdersViewModel: ObservableObject{
                 .document(my_Order.OrderNumber)
                 .setData(data){ _ in
                     print("DEBUG: Order data uploaded")
+                }
+            let document = await Firestore.firestore().collection("users").document(authManager.userSession!.uid)
+            var dataArray = try await document.getDocument().data()?["OrderNumbers"] as? [String] ?? ["nil"]
+            await dataArray.append(my_Order.OrderNumber)
+                
+            
+            await Firestore.firestore().collection("users")
+                .document(authManager.userSession!.uid)
+                .updateData(["OrderNumbers": dataArray]) { error in
+                    if let error = error{
+                        print("Error updating data: \(error.localizedDescription)")
+                    }
+                    else {
+                        print("Update successful")
+                        
+                    }
                 }
         }
         catch{

@@ -56,6 +56,7 @@
 		CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A729C468ED009699F8 /* MainMenuView.swift */; };
 		CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A929C57FA4009699F8 /* HalfBubble.swift */; };
 		CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */; };
+		CBCE3DDA2A47E77000C345E5 /* FetchOrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE3DD92A47E77000C345E5 /* FetchOrderData.swift */; };
 		CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */; };
 		CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */; };
 		CBDB27282989B1390044BA10 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB27272989B1390044BA10 /* SignUp.swift */; };
@@ -100,6 +101,7 @@
 		CBA161A729C468ED009699F8 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		CBA161A929C57FA4009699F8 /* HalfBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBubble.swift; sourceTree = "<group>"; };
 		CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientOptionsView.swift; sourceTree = "<group>"; };
+		CBCE3DD92A47E77000C345E5 /* FetchOrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOrderData.swift; sourceTree = "<group>"; };
 		CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcaveConvexTop.swift; sourceTree = "<group>"; };
 		CBDB27222989B1390044BA10 /* BurritoBistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BurritoBistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDB27252989B1390044BA10 /* BurritoBistroApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroApp.swift; sourceTree = "<group>"; };
@@ -224,6 +226,14 @@
 			path = AuthFlow;
 			sourceTree = "<group>";
 		};
+		CBCE3DD82A47E6D800C345E5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CBCE3DD92A47E77000C345E5 /* FetchOrderData.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		CBCFAE0129A30FF400BD2B2A /* ShapeAssets */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +267,7 @@
 		CBDB27242989B1390044BA10 /* BurritoBistro */ = {
 			isa = PBXGroup;
 			children = (
+				CBCE3DD82A47E6D800C345E5 /* Helpers */,
 				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
 				CB2BA2A42A3DAFDC00CBAF22 /* FireStore */,
 				CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */,
@@ -471,6 +482,7 @@
 				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
 				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
 				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
+				CBCE3DDA2A47E77000C345E5 /* FetchOrderData.swift in Sources */,
 				CB6E907C2A3C47E7008EF8EE /* MainFlow.swift in Sources */,
 				CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */,
 				CB6E90742A3C34AA008EF8EE /* AuthManager.swift in Sources */,

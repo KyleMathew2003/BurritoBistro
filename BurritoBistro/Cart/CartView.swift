@@ -296,7 +296,7 @@ struct CartView: View {
                 HStack {
                     Button {
                         let orderModel = OrderModel(Order: my_Cart, Tip: returnTip(Tip: Tip))
-                        let cur_Order = OrdersViewModel(my_Order: orderModel)
+                        let cur_Order = OrdersViewModel(my_Order: orderModel, auth: Auth)
                         Task{
                             try await cur_Order.addOrder()
                         }

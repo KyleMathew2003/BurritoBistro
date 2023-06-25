@@ -17,7 +17,7 @@ protocol AuthFormProtocol {
 }
 
 @MainActor
-final class AuthManager: ObservableObject {
+class AuthManager: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: Profile?
     @Published var inUseError: String = ""
@@ -52,7 +52,7 @@ final class AuthManager: ObservableObject {
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             await fetchUser()            
-            let data = ["email": email.lowercased(), "firstName": firstName, "lastName": lastName, "uid": user.id]
+            let data = ["email": email.lowercased(), "firstName": firstName, "lastName": lastName, "uid": user.id, "OrderNumbers" : []] as [String : Any]
             Firestore.firestore().collection("users")
                 .document(user.id)
                 .setData(data){ _ in
@@ -88,3 +88,4 @@ final class AuthManager: ObservableObject {
         print("DEBUG: Cur User is: \(self.currentUser)")
     }
 }
+

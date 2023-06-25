@@ -11,8 +11,9 @@ import SwiftUI
 
 struct MainMenu: View {
     @EnvironmentObject var AuthManager: AuthManager
-
+    @State var Orders: [Order] = []
     
+
     //View Settings
     @State private var OutsideSpacing = CGFloat(10)
     @State private var AddButtonSpacing = CGFloat(24)
@@ -81,6 +82,17 @@ struct MainMenu: View {
         visible.toggle()
     }
             
+    private func fetchAndUpdate(){
+        Task{
+            do{
+                let orders = try await fetchOrdersData(AuthManager)
+                Orders = orders
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView{
                 VStack {
@@ -90,8 +102,9 @@ struct MainMenu: View {
                         VStack(alignment:.leading,spacing:5){
                             HStack {
                                 Button {
-                                    print("")
-                                    print(AuthManager.userSession!.uid)
+                                    Task{
+                                        try await fetchOrdersData(AuthManager)
+                                    }
                                 }label:{
                                     HStack{
                                         Text("Search")
@@ -107,7 +120,19 @@ struct MainMenu: View {
                                 )
                                 }
                                 Spacer()
-                                
+                                NavigationLink {
+                                    OrdersView(Orders: $Orders, my_Cart: $my_Cart)
+                                        .navigationBarHidden(true)
+                                }label:{
+                                    Image(systemName: "gear")
+                                        .padding(OutsideSpacing)
+                                        .background(
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .foregroundColor(.black)
+                                            .opacity(BubbleOpcaity)
+                                    )
+                                }
+                                Spacer()
                                 NavigationLink {
                                     Settings()
                                         .navigationBarHidden(true)
@@ -429,6 +454,9 @@ struct MainMenu: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("bgc"))
         .navigationBarHidden(true)
+        .onAppear{
+            fetchAndUpdate()
+        }
 
         }
         .ignoresSafeArea()
