@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB1455C82A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
+		CB1455C92A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
+		CB1455CA2A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
 		CB2BA2A32A3D3AAE00CBAF22 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */; };
 		CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */; };
 		CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */; };
 		CB2BA2AD2A3ED36600CBAF22 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2AC2A3ED36600CBAF22 /* OrdersView.swift */; };
 		CB61C1862A1F0D140088607E /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61C1852A1F0D140088607E /* CartView.swift */; };
-		CB6E90402A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */; };
-		CB6E90412A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */; };
-		CB6E90422A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */; };
 		CB6E90452A3C0657008EF8EE /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = CB6E90442A3C0657008EF8EE /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		CB6E90472A3C0657008EF8EE /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = CB6E90462A3C0657008EF8EE /* FirebaseAppCheck */; };
 		CB6E90492A3C0657008EF8EE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CB6E90482A3C0657008EF8EE /* FirebaseAuth */; };
@@ -85,12 +85,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
 		CB2BA2AC2A3ED36600CBAF22 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		CB61C1852A1F0D140088607E /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
-		CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6E90732A3C34AA008EF8EE /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		CB6E90772A3C3E66008EF8EE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CB6E907B2A3C47E7008EF8EE /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
@@ -246,6 +246,7 @@
 		CBDB27192989B1390044BA10 = {
 			isa = PBXGroup;
 			children = (
+				CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */,
 				CBDB27242989B1390044BA10 /* BurritoBistro */,
 				CBDB27352989B1390044BA10 /* BurritoBistroTests */,
 				CBDB273F2989B1390044BA10 /* BurritoBistroUITests */,
@@ -270,7 +271,6 @@
 				CBCE3DD82A47E6D800C345E5 /* Helpers */,
 				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
 				CB2BA2A42A3DAFDC00CBAF22 /* FireStore */,
-				CB6E903F2A3BF3FB008EF8EE /* GoogleService-Info.plist */,
 				CB6E907F2A3C50C1008EF8EE /* Settings */,
 				CB61C1842A1F0D030088607E /* Cart */,
 				CB9FAA172A186A7200E0CDFC /* MainMenu */,
@@ -442,8 +442,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBDB272D2989B1390044BA10 /* Preview Assets.xcassets in Resources */,
+				CB1455C82A5A944E00378EE4 /* GoogleService-Info.plist in Resources */,
 				CBDB272A2989B1390044BA10 /* Assets.xcassets in Resources */,
-				CB6E90402A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6E90412A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */,
+				CB1455C92A5A944E00378EE4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6E90422A3BF3FB008EF8EE /* GoogleService-Info.plist in Resources */,
+				CB1455CA2A5A944E00378EE4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
