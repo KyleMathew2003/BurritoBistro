@@ -23,7 +23,11 @@ struct my_Cart{
     var Cart: [CartVals] = []
     
     func cartCount() -> Int {
-        return Cart.count
+        var output = 0
+        for i in Cart{
+            output += i.Count
+        }
+        return output
     }
     
     func subtotal() -> Float {

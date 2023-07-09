@@ -50,16 +50,6 @@ struct OrdersView: View {
         toggleBinding(for: id, in: arrayIndex).wrappedValue = newValue
     }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
         guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
@@ -126,11 +116,13 @@ struct OrdersView: View {
                             
                             VStack(alignment:.leading){
                                 HStack {
-                                    Image(systemName: toggleBinding(for: Orders[i].id, in: 0).wrappedValue ? "chevron.down": "chevron.right")
+                                    Image(systemName:  "chevron.down")
+                                        .rotationEffect(Angle(degrees: toggleBinding(for: Orders[i].id, in: 0).wrappedValue ? 0: -90))
                                         .onTapGesture {
                                             toggleBinding(for: Orders[i].id, in: 0).wrappedValue.toggle()
                                         }
-                                        .animation(.spring(response: 0.5))
+                                       
+                                        .animation(.linear(duration: 0.2))
                                         .frame(width:20)
                                     Text("\(DateFormatter.localizedString(from: Orders[i].timeStamp, dateStyle: .medium, timeStyle: .none))")
                                         .fontWeight(.bold)
@@ -156,16 +148,17 @@ struct OrdersView: View {
                                         ForEach(Orders[i].orderModel.Order.Cart.indices, id:\.self) { itemIndex in
                                             VStack(alignment:.leading){
                                                 HStack(alignment:.top){
-                                                    Image(systemName: toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue ? "chevron.down": "chevron.right")
+                                                    Image(systemName: "chevron.down")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
                                                         .frame(width: 10, height: 10)
                                                         .padding(.top,3)
+                                                        .rotationEffect(Angle(degrees:toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue ? 0:-90))
                                                         .onTapGesture {
                                                                 toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue.toggle()
                                                             
                                                         }
-                                                        .animation(.spring(response: 0.5))
+                                                        .animation(.linear(duration: 0.2))
 
                                                     VStack(alignment:.leading){
                                                         HStack(alignment:.center){
@@ -226,11 +219,10 @@ struct OrdersView: View {
                                         }
                                         .font(.subheadline)
                                     }
-                                    .animation(.spring(response: 0.5))
+                                    .animation(.spring(response: 0.2))
     
                                 }
                             }
-                            .animation(.spring(response:0.5))
                             .foregroundColor(.white)
                             .padding(BubbleContentSpacing)
                             .background(
@@ -241,6 +233,7 @@ struct OrdersView: View {
                             
                         }
                             .buttonStyle(.plain)
+                            .animation(.spring(response:0.5))
 
                         }
                     }
