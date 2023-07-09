@@ -226,9 +226,11 @@ struct OrdersView: View {
                                         }
                                         .font(.subheadline)
                                     }
-
+                                    .animation(.spring(response: 0.5))
+    
                                 }
                             }
+                            .animation(.spring(response:0.5))
                             .foregroundColor(.white)
                             .padding(BubbleContentSpacing)
                             .background(
@@ -243,8 +245,9 @@ struct OrdersView: View {
                         }
                     }
                     .padding(.top,OutsideSpacing)
-                Spacer()
+                Spacer(minLength: 200)
                 }
+                
             }
          
             VStack {
