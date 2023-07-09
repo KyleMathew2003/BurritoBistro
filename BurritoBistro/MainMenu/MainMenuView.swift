@@ -56,7 +56,6 @@ struct MainMenu: View {
     // bolding/horzscrollng to drinks
     //
     // 2) the vertical scroll happens concurrently, however, as it goes to drinks, it must pass sides
-    //
     // 3) this would trigger the geom reader for the sides, thus updating the curr section back to sides
     // thus highlighting and attempting to horzscroll there, but finally, when the
     // drinks section is reached, the geom reader is triggered, updating correctly again
