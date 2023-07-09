@@ -15,6 +15,51 @@ struct OrdersView: View {
 
     @EnvironmentObject var AuthManager: AuthManager
     @State private var Menu = MenuItems
+    
+    @State private var toggleStates: [[String:Bool]] = []
+
+    private func toggleBinding(for id: String, in arrayIndex:Int) -> Binding<Bool>{
+        return Binding<Bool>(
+            get: {
+                if(arrayIndex == 0){
+                }
+                return isToggleOn(for: id, in: arrayIndex)
+            },
+        set: { newValue in
+            updateToggleState(for: id, in: arrayIndex ,newValue: newValue)
+        })
+    }
+    private func isToggleOn(for id: String, in arrayIndex: Int) -> Bool{
+        DispatchQueue.main.async{
+            while arrayIndex >= toggleStates.count{
+                toggleStates.append([:])
+            }
+        }
+        if arrayIndex < toggleStates.count{
+            return toggleStates[arrayIndex][id] ?? false
+        }
+            return false
+    }
+    
+    private func updateToggleState(for id: String, in arrayIndex: Int, newValue: Bool){
+        DispatchQueue.main.async {
+        if arrayIndex >= toggleStates.count{
+            toggleStates.append([id:newValue])
+        }
+        toggleStates[arrayIndex][id] = newValue
+        toggleBinding(for: id, in: arrayIndex).wrappedValue = newValue
+    }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
         guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
@@ -74,26 +119,115 @@ struct OrdersView: View {
                 
                 ScrollView{
                     VStack(){
-                        ForEach($Orders, id:\.self){ $i in
+                        ForEach(Orders.indices, id:\.self){ i in
                             Button{
-                              addToOrderToCart(order: i)
+                                addToOrderToCart(order: Orders[i])
                             }label:{
                             
                             VStack(alignment:.leading){
                                 HStack {
-                                    Text("\(DateFormatter.localizedString(from: i.timeStamp, dateStyle: .medium, timeStyle: .none))")
+                                    Image(systemName: toggleBinding(for: Orders[i].id, in: 0).wrappedValue ? "chevron.down": "chevron.right")
+                                        .onTapGesture {
+                                            toggleBinding(for: Orders[i].id, in: 0).wrappedValue.toggle()
+                                        }
+                                        .animation(.spring(response: 0.5))
+                                        .frame(width:20)
+                                    Text("\(DateFormatter.localizedString(from: Orders[i].timeStamp, dateStyle: .medium, timeStyle: .none))")
                                         .fontWeight(.bold)
                                         .lineLimit(1)
                                     Circle()
                                         .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
                                         .opacity(0.5)
-                                    Text("\(i.orderModel.OrderStatus.OrderStatus)")
+                                    Text("\(Orders[i].orderModel.OrderStatus.OrderStatus)")
+                                        .font(.caption)
+                                        .fontWeight(.light)
+                                    Circle()
+                                        .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
+                                        .opacity(0.5)
+                                    Text("\(Orders[i].total, specifier: "%.2f")")
                                         .font(.caption)
                                         .fontWeight(.light)
                                     Spacer()
 
                                 }
                                 .padding(.bottom,5)
+                                if toggleBinding(for: Orders[i].id, in: 0).wrappedValue == true{
+                                    VStack(alignment:.leading){
+                                        ForEach(Orders[i].orderModel.Order.Cart.indices, id:\.self) { itemIndex in
+                                            VStack(alignment:.leading){
+                                                HStack(alignment:.top){
+                                                    Image(systemName: toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue ? "chevron.down": "chevron.right")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 10, height: 10)
+                                                        .padding(.top,3)
+                                                        .onTapGesture {
+                                                                toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue.toggle()
+                                                            
+                                                        }
+                                                        .animation(.spring(response: 0.5))
+
+                                                    VStack(alignment:.leading){
+                                                        HStack(alignment:.center){
+                                                            Text(Orders[i].orderModel.Order.Cart[itemIndex].Item.foodName)
+                                                                .font(.caption)
+                                                            Circle()
+                                                                .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
+                                                                .opacity(0.5)
+                                                            Text("\(Orders[i].orderModel.Order.Cart[itemIndex].Count)")
+                                                            Spacer()
+                                                            Text("\(Orders[i].orderModel.Order.Cart[itemIndex].Item.MenuItemDetails.price * Float(Orders[i].orderModel.Order.Cart[itemIndex].Count), specifier:"%.2f")")
+                                                                .font(.caption)
+                                                        }
+                                                        .font(.caption)
+
+                                                        if toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue == true{
+                                                            
+                                                            ForEach(Orders[i].orderModel.Order.Cart[itemIndex].Item.returnOnOptions(), id:\.0){ option in
+                                                                HStack{
+                                                                    Text(option.0)
+                                                                    Spacer()
+                                                                    if option.1 != 0{
+                                                                        Text("\(option.1, specifier: "%.2f")")
+                                                                    }
+                                                                }
+                                                                .font(.caption2)
+                                                                .foregroundColor(.white)
+                                                                .opacity(0.5)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        Divider()
+                                            .overlay{
+                                                Color.white
+                                                    .opacity(0.5)
+                                            }
+                                        HStack{
+                                            Text("Subtotal")
+                                            Spacer()
+                                            Text("\(Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
+                                        }
+                                        .font(.footnote)
+                                        HStack{
+                                            Text("Tip")
+                                            Spacer()
+                                            Text("\(Orders[i].total - Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
+                                        }
+                                        .font(.footnote)
+                                        HStack{
+                                            Text("Total")
+                                                .fontWeight(.semibold)
+                                            Spacer()
+                                            Text("\(Orders[i].total, specifier: "%.2f")")
+                                                .fontWeight(.semibold)
+                                        }
+                                        .font(.subheadline)
+                                    }
+
+                                }
                             }
                             .foregroundColor(.white)
                             .padding(BubbleContentSpacing)
@@ -107,37 +241,6 @@ struct OrdersView: View {
                             .buttonStyle(.plain)
 
                         }
-                        
-                        VStack(spacing:10){
-                            HStack(spacing:0){
-                                Text("Subtotal")
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                                Text(" (Tax Included)")
-                                    .foregroundColor(.white)
-                                    .font(.title3)
-                                    .fontWeight(.light)
-                                Spacer()
-                            }
-                            Divider()
-                                .overlay(Color.white)
-                                .opacity(0.5)
-                                .padding(.horizontal)
-                            HStack(spacing:0){
-                                Text("Total")
-                                    .foregroundColor(.white)
-                                    .font(.title)
-                                    .fontWeight(.semibold)
-                                Text(" (Tax Included)")
-                                    .foregroundColor(.white)
-                                    .font(.title3)
-                                    .fontWeight(.light)
-                                Spacer()
-                            }
-                        }
-                        .padding(.horizontal,OutsideSpacing*2)
-                        .padding(.top)
                     }
                     .padding(.top,OutsideSpacing)
                 Spacer()

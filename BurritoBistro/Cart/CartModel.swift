@@ -10,13 +10,15 @@ import SwiftUI
 //model
 struct CartVals: Equatable, Hashable{
     var Item: MenuFoodItems
-    
     var Count: Int
+    var id = UUID().uuidString
 }
 
 //viewmodel
 struct my_Cart{
     @State private var Menu = MenuItems
+    var id = UUID().uuidString
+
 
     var Cart: [CartVals] = []
     

@@ -45,6 +45,15 @@ struct MenuFoodItems: Identifiable, Hashable{
         let sum = filteredArray.reduce(0) { $0 + $1.optionPrice }
         return sum + MenuItemDetails.price
     }
+    func returnOnOptions() -> [(String,Float)]{
+        let flattenedArray = Ingredients.IngredientOptions.flatMap{$0.section_Option}
+        let filteredArray = flattenedArray.filter{$0.isOn}
+        var output:[(String,Float)] = []
+        for i in filteredArray{
+            output.append((i.option,i.optionPrice))
+        }
+        return output
+    }
 }
 
 

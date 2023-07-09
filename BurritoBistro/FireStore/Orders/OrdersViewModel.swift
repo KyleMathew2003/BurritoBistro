@@ -15,7 +15,7 @@ struct Order: Identifiable, Hashable, Equatable{
         return lhs.id == rhs.id
     }
     
-    let id = UUID()
+    let id = UUID().uuidString
     var orderModel: OrderModel
     let timeStamp: Date
     let total: Float
