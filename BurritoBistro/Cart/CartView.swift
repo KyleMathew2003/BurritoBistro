@@ -126,7 +126,7 @@ struct CartView: View {
                                     .navigationBarHidden(true)
                             }label:{
                             
-                            VStack(alignment:.leading){
+                                VStack(alignment:.leading, spacing: 10){
                                 HStack {
                                     Text("\(i.Item.foodName)")
                                         .font(.title3)
@@ -189,21 +189,24 @@ struct CartView: View {
                                     )
                                     
                                 }
-                                .padding(.bottom,5)
-                                if my_Cart.optionsSelected(){
+                                if i.Item.returnOnOptions().count != 0{
                                     Divider()
-                                        .overlay(.gray)
+                                        .overlay(.white)
                                         .opacity(0.4)
                                 }
-                                ForEach(i.Item.Ingredients.IngredientOptions, id:\.self) { j in
-                                    ForEach(j.section_Option, id:\.self) { k in
-                                        if k.isOn{
-                                            Text(k.option)
-                                                .font(.caption)
-                                                .opacity(0.5)
+                                ForEach(i.Item.returnOnOptions(), id:\.0) { j in
+                                    HStack{
+                                        Text(j.0)
+                                        Spacer()
+                                        if j.1 != 0{
+                                            Text("\(j.1,specifier : "%.2f")")
                                         }
                                     }
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                                    .opacity(0.5)
                                 }
+                             
                                 
                             }
                             .foregroundColor(.white)

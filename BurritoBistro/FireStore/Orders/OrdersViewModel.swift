@@ -10,6 +10,28 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+
+
+class Orders{
+    var Orders: [Order] = []
+    
+    
+    init() {
+    }
+    
+    func fetchOrdersFromDatabase(authManager:AuthManager) async -> [Order]{
+        Task{
+            do{
+                let orders = try await fetchOrdersData(authManager)
+                Orders = orders
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        return Orders
+    }
+}
+
 struct Order: Identifiable, Hashable, Equatable{
     static func == (lhs: Order, rhs: Order) -> Bool {
         return lhs.id == rhs.id

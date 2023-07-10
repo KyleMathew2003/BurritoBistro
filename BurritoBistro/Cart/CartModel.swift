@@ -85,7 +85,7 @@ struct my_Cart{
     func optionsSelected() -> Bool {
         let flatArray = Cart.flatMap{ $0.Item.Ingredients.IngredientOptions}
         let flatterArray = flatArray.flatMap{$0.section_Option}
-        let filteredArray = flatterArray.filter{$0.isOn}
+        let filteredArray = flatterArray.filter{$0.isOn == true}
         
         if filteredArray.count != 0{
             return true

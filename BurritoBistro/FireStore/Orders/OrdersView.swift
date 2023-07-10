@@ -10,7 +10,8 @@ import Combine
 import Foundation
 
 struct OrdersView: View {
-    @Binding var Orders: [Order]
+    @Binding var My_Order: Orders
+    
     @Binding var my_Cart: my_Cart
 
     @EnvironmentObject var AuthManager: AuthManager
@@ -92,7 +93,7 @@ struct OrdersView: View {
 
                     Spacer()
                         }
-                        Text("Check Out")
+                        Text("Orders")
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -109,43 +110,43 @@ struct OrdersView: View {
                 
                 ScrollView{
                     VStack(){
-                        ForEach(Orders.indices, id:\.self){ i in
+                        ForEach(My_Order.Orders.indices, id:\.self){ i in
                             Button{
-                                addToOrderToCart(order: Orders[i])
+                                addToOrderToCart(order: My_Order.Orders[i])
                             }label:{
                             
                             VStack(alignment:.leading){
                                 HStack {
                                     Image(systemName:  "chevron.down")
-                                        .rotationEffect(Angle(degrees: toggleBinding(for: Orders[i].id, in: 0).wrappedValue ? 0: -90))
+                                        .rotationEffect(Angle(degrees: toggleBinding(for: My_Order.Orders[i].id, in: 0).wrappedValue ? 0: -90))
                                         .onTapGesture {
-                                            toggleBinding(for: Orders[i].id, in: 0).wrappedValue.toggle()
+                                            toggleBinding(for: My_Order.Orders[i].id, in: 0).wrappedValue.toggle()
                                         }
                                        
                                         .animation(.linear(duration: 0.2))
                                         .frame(width:20)
-                                    Text("\(DateFormatter.localizedString(from: Orders[i].timeStamp, dateStyle: .medium, timeStyle: .none))")
+                                    Text("\(DateFormatter.localizedString(from: My_Order.Orders[i].timeStamp, dateStyle: .medium, timeStyle: .none))")
                                         .fontWeight(.bold)
                                         .lineLimit(1)
                                     Circle()
                                         .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
                                         .opacity(0.5)
-                                    Text("\(Orders[i].orderModel.OrderStatus.OrderStatus)")
+                                    Text("\(My_Order.Orders[i].orderModel.OrderStatus.OrderStatus)")
                                         .font(.caption)
                                         .fontWeight(.light)
                                     Circle()
                                         .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
                                         .opacity(0.5)
-                                    Text("\(Orders[i].total, specifier: "%.2f")")
+                                    Text("\(My_Order.Orders[i].total, specifier: "%.2f")")
                                         .font(.caption)
                                         .fontWeight(.light)
                                     Spacer()
 
                                 }
                                 .padding(.bottom,5)
-                                if toggleBinding(for: Orders[i].id, in: 0).wrappedValue == true{
+                                if toggleBinding(for: My_Order.Orders[i].id, in: 0).wrappedValue == true{
                                     VStack(alignment:.leading){
-                                        ForEach(Orders[i].orderModel.Order.Cart.indices, id:\.self) { itemIndex in
+                                        ForEach(My_Order.Orders[i].orderModel.Order.Cart.indices, id:\.self) { itemIndex in
                                             VStack(alignment:.leading){
                                                 HStack(alignment:.top){
                                                     Image(systemName: "chevron.down")
@@ -153,30 +154,30 @@ struct OrdersView: View {
                                                         .aspectRatio(contentMode: .fit)
                                                         .frame(width: 10, height: 10)
                                                         .padding(.top,3)
-                                                        .rotationEffect(Angle(degrees:toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue ? 0:-90))
+                                                        .rotationEffect(Angle(degrees:toggleBinding(for: My_Order.Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue ? 0:-90))
                                                         .onTapGesture {
-                                                                toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue.toggle()
+                                                            toggleBinding(for: My_Order.Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue.toggle()
                                                             
                                                         }
                                                         .animation(.linear(duration: 0.2))
 
                                                     VStack(alignment:.leading){
                                                         HStack(alignment:.center){
-                                                            Text(Orders[i].orderModel.Order.Cart[itemIndex].Item.foodName)
+                                                            Text(My_Order.Orders[i].orderModel.Order.Cart[itemIndex].Item.foodName)
                                                                 .font(.caption)
                                                             Circle()
                                                                 .frame(minWidth: 4, idealWidth: 5, maxWidth: 5, minHeight: 4, idealHeight: 5, maxHeight: 5)
                                                                 .opacity(0.5)
-                                                            Text("\(Orders[i].orderModel.Order.Cart[itemIndex].Count)")
+                                                            Text("\(My_Order.Orders[i].orderModel.Order.Cart[itemIndex].Count)")
                                                             Spacer()
-                                                            Text("\(Orders[i].orderModel.Order.Cart[itemIndex].Item.MenuItemDetails.price * Float(Orders[i].orderModel.Order.Cart[itemIndex].Count), specifier:"%.2f")")
+                                                            Text("\(My_Order.Orders[i].orderModel.Order.Cart[itemIndex].Item.sumIngredientPrice() * Float(My_Order.Orders[i].orderModel.Order.Cart[itemIndex].Count), specifier:"%.2f")")
                                                                 .font(.caption)
                                                         }
                                                         .font(.caption)
 
-                                                        if toggleBinding(for: Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue == true{
+                                                        if toggleBinding(for: My_Order.Orders[i].orderModel.Order.Cart[itemIndex].id, in: i+1).wrappedValue == true{
                                                             
-                                                            ForEach(Orders[i].orderModel.Order.Cart[itemIndex].Item.returnOnOptions(), id:\.0){ option in
+                                                            ForEach(My_Order.Orders[i].orderModel.Order.Cart[itemIndex].Item.returnOnOptions(), id:\.0){ option in
                                                                 HStack{
                                                                     Text(option.0)
                                                                     Spacer()
@@ -201,20 +202,20 @@ struct OrdersView: View {
                                         HStack{
                                             Text("Subtotal")
                                             Spacer()
-                                            Text("\(Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
+                                            Text("\(My_Order.Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
                                         }
                                         .font(.footnote)
                                         HStack{
                                             Text("Tip")
                                             Spacer()
-                                            Text("\(Orders[i].total - Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
+                                            Text("\(My_Order.Orders[i].total - My_Order.Orders[i].orderModel.Order.subtotal(), specifier: "%.2f")")
                                         }
                                         .font(.footnote)
                                         HStack{
                                             Text("Total")
                                                 .fontWeight(.semibold)
                                             Spacer()
-                                            Text("\(Orders[i].total, specifier: "%.2f")")
+                                            Text("\(My_Order.Orders[i].total, specifier: "%.2f")")
                                                 .fontWeight(.semibold)
                                         }
                                         .font(.subheadline)
@@ -255,6 +256,6 @@ struct OrdersView: View {
 
 struct OrdersView_Previews: PreviewProvider {
     static var previews: some View {
-        OrdersView(Orders: .constant([.init(orderModel: .init(Order: .init(Cart: [.init(Item: .init(foodName: "bal", MenuItemDetails: .init(description: "", price: 1, group: .drinks), Ingredients: .init(IngredientOptions: [])), Count: 1)]), Tip: 1), timeStamp: .now, total: 1),.init(orderModel: .init(Order: .init(Cart: [.init(Item: .init(foodName: "bal", MenuItemDetails: .init(description: "", price: 1, group: .drinks), Ingredients: .init(IngredientOptions: [])), Count: 1)]), Tip: 1), timeStamp: .now, total: 1)]), my_Cart: .constant(.init(Cart: [])))
+        OrdersView(My_Order: .constant(.init()), my_Cart: .constant(.init(Cart: [])))
     }
 }

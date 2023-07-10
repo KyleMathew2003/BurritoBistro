@@ -13,7 +13,11 @@ struct MainFlowView: View {
         Group{
             if viewModel.userSession == nil{
                 SignUp()
-            } else{
+            } else
+            if (viewModel.userSession?.email)?.lowercased() == "kylemathew2@gmail.com"{
+                Settings()
+            }
+            else{
                 MainMenu()
             }
         }

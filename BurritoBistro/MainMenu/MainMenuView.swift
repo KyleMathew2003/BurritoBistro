@@ -11,7 +11,8 @@ import SwiftUI
 
 struct MainMenu: View {
     @EnvironmentObject var AuthManager: AuthManager
-    @State var Orders: [Order] = []
+    
+    @State var My_Order: Orders = .init()
     
 
     //View Settings
@@ -81,16 +82,7 @@ struct MainMenu: View {
         visible.toggle()
     }
             
-    private func fetchAndUpdate(){
-        Task{
-            do{
-                let orders = try await fetchOrdersData(AuthManager)
-                Orders = orders
-            } catch {
-                print("Error: \(error)")
-            }
-        }
-    }
+
     
     var body: some View {
         NavigationView{
@@ -101,9 +93,6 @@ struct MainMenu: View {
                         VStack(alignment:.leading,spacing:5){
                             HStack {
                                 Button {
-                                    Task{
-                                        try await fetchOrdersData(AuthManager)
-                                    }
                                 }label:{
                                     HStack{
                                         Text("Search")
@@ -120,10 +109,10 @@ struct MainMenu: View {
                                 }
                                 Spacer()
                                 NavigationLink {
-                                    OrdersView(Orders: $Orders, my_Cart: $my_Cart)
+                                    OrdersView(My_Order: $My_Order, my_Cart: $my_Cart)
                                         .navigationBarHidden(true)
                                 }label:{
-                                    Image(systemName: "gear")
+                                    Image(systemName: "cart")
                                         .padding(OutsideSpacing)
                                         .background(
                                         RoundedRectangle(cornerRadius: 25)
@@ -454,7 +443,13 @@ struct MainMenu: View {
         .background(Color("bgc"))
         .navigationBarHidden(true)
         .onAppear{
-            fetchAndUpdate()
+            Task{
+                do{
+                    await My_Order.fetchOrdersFromDatabase(authManager: AuthManager)
+            } catch {
+                print("Main Menu Error: \(error)")
+            }
+            }
         }
 
         }
