@@ -41,6 +41,7 @@ struct Order: Identifiable, Hashable, Equatable{
     var orderModel: OrderModel
     let timeStamp: Date
     let total: Float
+    var undo: Bool = false
     
     func hash(into hasher: inout Hasher){
         hasher.combine(id)
@@ -85,13 +86,21 @@ class OrdersViewModel: ObservableObject{
                     "count": pair.count
                 ] as [String : Any]
             }
+            let firstName = try await Firestore.firestore().collection("users").document(authManager.userSession!.uid).getDocument().data()?["firstName"]
+            let lastName = try await Firestore.firestore().collection("users").document(authManager.userSession!.uid).getDocument().data()?["lastName"]
+
+            
             
             let data = await ["orderNumber" : my_Order.OrderNumber,
                         "userID" : user.uid,
                         "price" : (round(my_Order.Total * 100) / 100),
                         "food" : foodIngredientdict,
                         "orderStatus" : my_Order.OrderStatus.OrderStatus,
-                        "timeStamp" : Timestamp(date: Date())] as [String : Any]
+                        "timeStamp" : Timestamp(date: Date()),
+                              "firstName" : firstName!,
+                              "lastName" : lastName!,
+                              "location" : my_Order.location
+            ] as [String : Any]
             await Firestore.firestore().collection("orders")
                 .document(my_Order.OrderNumber)
                 .setData(data){ _ in

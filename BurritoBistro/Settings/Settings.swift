@@ -15,39 +15,32 @@ struct Settings: View {
     var body: some View {
         
         VStack(spacing:0){
-            ZStack{
-                HStack(alignment: .center){
-                    ZStack{
-                        HStack(alignment:.center){
-                            Button{
-                                dismiss()
-                            }label:{
-                                Image(systemName: "xmark")
-                                    .foregroundColor(.white)
-                            }
-                            .padding(25)
-                            .padding(.top)
-                            Spacer()
-                        }
-                        
-                        Text("Settings")
-                            .fontWeight(Font.Weight.bold)
-                            .font(.title)
-                            .padding()
-                            .padding(.top,8)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                            .frame(width: UIScreen.main.bounds.width)
-                            .padding(.vertical)
-                            .padding(.top,5)
+            HStack{
+                ZStack{
+                    HStack{
+                Button{
+                    dismiss()
+                }label:{
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                }
+
+                Spacer()
                     }
+                    Text("Settings")
+                        .fontWeight(Font.Weight.bold)
+                        .font(.title)
+                        .foregroundColor(.white)
                 }
             }
-
-                .background(
-                    HalfBubbleBottom(radius: 50)
-                        .opacity(0.5)
-                )
+            .padding()
+            .padding(.bottom,10)
+            .background(
+                HalfBubbleBottom(radius: 20)
+                    .foregroundColor(Color("bubbleColor"))
+                    .ignoresSafeArea()
+                
+            )
             Button{
                 AuthManager.signOut()
                 
@@ -82,9 +75,8 @@ struct Settings: View {
             Spacer()
            
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height,alignment: .center)
+        .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .center)
         .background(Color("bgc"))
-        .ignoresSafeArea()
     }
 }
 

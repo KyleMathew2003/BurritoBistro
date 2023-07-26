@@ -25,6 +25,9 @@ func fetchOrdersData(_ authManager: AuthManager) async throws -> [Order]{
         my_Orders[i] = (try await Firestore.firestore().collection("orders").document(i).getDocument().data())!
         let time = ((my_Orders[i]! as! [String:Any])["timeStamp"] as! Timestamp).dateValue()
         let totals = (my_Orders[i]! as! [String:Any])["price"] as! Float
+        let status = (my_Orders[i]! as! [String:Any])["orderStatus"] as! String
+
+
         
         let cart = (my_Orders[i]! as! [String:Any])["food"] as! [String:Any]
         
@@ -53,7 +56,8 @@ func fetchOrdersData(_ authManager: AuthManager) async throws -> [Order]{
         
         let Tip = totals - My_Cart.subtotal()
    
-        var curOrder: Order = await .init(orderModel: .init(Order: My_Cart, Tip: Tip), timeStamp: time, total: totals)
+        var curOrder: Order = await .init(orderModel: .init(Order: My_Cart, Tip: Tip, location: "USA"), timeStamp: time, total: totals)
+        await curOrder.orderModel.changeStatus(input: status)
         output.append(curOrder)
     }
     return output
