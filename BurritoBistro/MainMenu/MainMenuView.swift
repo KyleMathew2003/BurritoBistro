@@ -328,7 +328,7 @@ struct MainMenu: View {
                                     
                                     if (!my_Cart.Cart.isEmpty) {
                                     NavigationLink {
-                                        CartView(my_Cart: $my_Cart, Tip: $Tip)
+                                        CartView(My_Order: $My_Order,my_Cart: $my_Cart, Tip: $Tip )
                                             .navigationBarHidden(true)
                                     }label:{
                                         HStack {

@@ -10,29 +10,27 @@ import Combine
 
 struct CartView: View {
     @EnvironmentObject var Auth: AuthManager
-
-
-    
-    @State private var Menu = MenuItems
-
-    private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
-        guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
-                fatalError("Element not found in parentArray")
-            }
-            return $Menu[index]
-        }
     
     @Environment(\.dismiss) private var dismiss
     
+    @Binding var My_Order: Orders
     @Binding var my_Cart: my_Cart
-    
+    @Binding var Tip: String
+    @State var Location: String = ""
+
+    @State private var Menu = MenuItems
     @State private var ImageSize = CGFloat(12)
     @State private var BubbleContentSpacing = CGFloat(20)
     @State private var BubbleOpcaity = 0.5
     @State private var OutsideSpacing = CGFloat(10)
     @State private var CheckOutBubblePadding = CGFloat(35)
     
-    @Binding var Tip: String
+    private func binding(for element:MenuFoodItems) -> Binding<MenuFoodItems> {
+        guard let index = MenuItems.firstIndex(where: { $0 == element }) else {
+                fatalError("Element not found in parentArray")
+            }
+            return $Menu[index]
+        }
     
     private func returnTip(Tip: String) -> Float{
         if Float(Tip) == nil {
@@ -159,8 +157,6 @@ struct CartView: View {
                                                     .resizable()
                                                     .frame(width:ImageSize,height:ImageSize-5)
                                             }
-                                            
-                                            
                                         }
                                         Text("\(i.Count)")
                                             .font(.body)
@@ -172,8 +168,6 @@ struct CartView: View {
                                                 .resizable()
                                                 .frame(width:ImageSize,height:ImageSize-5)
                                         }
-                                        
-                                        
                                     }
                                     .foregroundColor(.black)
                                     .frame(
@@ -221,6 +215,27 @@ struct CartView: View {
                             .buttonStyle(.plain)
 
                         }
+                        VStack(){
+                            HStack{
+                                TextField("", text: $Location)
+                                    .foregroundColor(.white)
+                                    .multilineTextAlignment(.leading)
+                                    .placeholder(when: Location.isEmpty) {
+                                        TextField("Enter Your Hall", text:.constant("Enter Your Hall"))
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.leading)
+                                            .disabled(true)
+                                    }
+                            }
+                            .padding(.vertical)
+                            .padding(.horizontal)
+                            .background(
+                                RoundedRectangle(cornerRadius: 25)
+                                    .opacity(BubbleOpcaity)
+                            )
+                            
+                        }
+                        .padding(.horizontal,OutsideSpacing)
                         
                         VStack(spacing:10){
                             HStack(spacing:0){
@@ -287,7 +302,7 @@ struct CartView: View {
                             }
                         }
                         .padding(.horizontal,OutsideSpacing*2)
-                        .padding(.top)
+                        .padding(.top,5)
                     }
                     .padding(.top,OutsideSpacing)
                 Spacer()
@@ -298,12 +313,22 @@ struct CartView: View {
                 Spacer()
                 HStack {
                     Button {
-                        let orderModel = OrderModel(Order: my_Cart, Tip: returnTip(Tip: Tip))
-                        let cur_Order = OrdersViewModel(my_Order: orderModel, auth: Auth)
-                        Task{
-                            try await cur_Order.addOrder()
+                        if Location != ""{
+                            
+                            let orderModel = OrderModel(Order: my_Cart, Tip: returnTip(Tip: Tip), location: Location)
+                            let cur_Order = OrdersViewModel(my_Order: orderModel, auth: Auth)
+                            Task{
+                                try await cur_Order.addOrder()
+                                do{
+                                    await My_Order.fetchOrdersFromDatabase(authManager: Auth)
+                                } catch {
+                                    print("Main Menu Error: \(error)")
+                                }
+                                dismiss()
+                            }
+                        } else if Location == ""{
+                            print("Yo This is Not Valid")
                         }
-                        
                     }label:{
                         HStack {
                             Text("Place Order")
@@ -324,7 +349,6 @@ struct CartView: View {
                                 .background(
                                 RoundedRectangle(cornerRadius: 25)
                                     .foregroundColor(.black)
-                                    
                             )
                         }
                     }
@@ -352,6 +376,6 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView(my_Cart: .constant(.init(Cart: [])), Tip: .constant(""))
+        CartView(My_Order: .constant(.init()), my_Cart: .constant(.init(Cart: [])), Tip: .constant(""))
     }
 }
