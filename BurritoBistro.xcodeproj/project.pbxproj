@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DEC1FA74E4D854D1927D81C /* Pods_BurritoBistro_BurritoBistroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A61832BA437E8CE2208A1B /* Pods_BurritoBistro_BurritoBistroUITests.framework */; };
+		56E01E592AF09F160BF6B60B /* Pods_BurritoBistroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A7528B2FFBC8D02AF6CF74 /* Pods_BurritoBistroTests.framework */; };
+		6486D51F3C465E17EF9C6476 /* Pods_BurritoBistro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A51C9903DF971BD9AB33C0E /* Pods_BurritoBistro.framework */; };
 		CB1455C82A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
 		CB1455C92A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
 		CB1455CA2A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
+		CB1D680A2A6A43020018962E /* CookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D68092A6A43020018962E /* CookView.swift */; };
+		CB1D68102A6A500F0018962E /* CookDBSOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D680F2A6A500F0018962E /* CookDBSOrders.swift */; };
 		CB2BA2A32A3D3AAE00CBAF22 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */; };
 		CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */; };
 		CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */; };
@@ -55,6 +60,9 @@
 		CBA161A529C30377009699F8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A429C30377009699F8 /* SignIn.swift */; };
 		CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A729C468ED009699F8 /* MainMenuView.swift */; };
 		CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A929C57FA4009699F8 /* HalfBubble.swift */; };
+		CBAEE0A12A76295C0091975E /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEE0A02A76295C0091975E /* Stripe.swift */; };
+		CBAEE0A22A76295C0091975E /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEE0A02A76295C0091975E /* Stripe.swift */; };
+		CBAEE0A32A76295C0091975E /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBAEE0A02A76295C0091975E /* Stripe.swift */; };
 		CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */; };
 		CBCE3DDA2A47E77000C345E5 /* FetchOrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE3DD92A47E77000C345E5 /* FetchOrderData.swift */; };
 		CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */; };
@@ -85,7 +93,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23D5FB0F4E5BE6687421B4CE /* Pods-BurritoBistroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistroTests.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistroTests/Pods-BurritoBistroTests.release.xcconfig"; sourceTree = "<group>"; };
+		32C61F6C26D4A01339DB11BC /* Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		361991900C862F545DEBC3DA /* Pods-BurritoBistro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro.debug.xcconfig"; sourceTree = "<group>"; };
+		51A7528B2FFBC8D02AF6CF74 /* Pods_BurritoBistroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A51C9903DF971BD9AB33C0E /* Pods_BurritoBistro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86ECD083B0C3C4B46031C858 /* Pods-BurritoBistroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistroTests.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistroTests/Pods-BurritoBistroTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1498237BD94E48D054F806 /* Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C3B3BB5060285CC2C66688FB /* Pods-BurritoBistro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro.release.xcconfig"; sourceTree = "<group>"; };
 		CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB1D68092A6A43020018962E /* CookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookView.swift; sourceTree = "<group>"; };
+		CB1D680F2A6A500F0018962E /* CookDBSOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookDBSOrders.swift; sourceTree = "<group>"; };
 		CB2BA2A22A3D3AAE00CBAF22 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		CB2BA2A82A3ED35000CBAF22 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		CB2BA2AA2A3ED35C00CBAF22 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
@@ -100,6 +118,7 @@
 		CBA161A429C30377009699F8 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		CBA161A729C468ED009699F8 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		CBA161A929C57FA4009699F8 /* HalfBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfBubble.swift; sourceTree = "<group>"; };
+		CBAEE0A02A76295C0091975E /* Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stripe.swift; sourceTree = "<group>"; };
 		CBC8DC3F2A2ABA7700C28CA7 /* IngredientOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientOptionsView.swift; sourceTree = "<group>"; };
 		CBCE3DD92A47E77000C345E5 /* FetchOrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOrderData.swift; sourceTree = "<group>"; };
 		CBCFAE0229A3101F00BD2B2A /* ConcaveConvexTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcaveConvexTop.swift; sourceTree = "<group>"; };
@@ -113,6 +132,7 @@
 		CBDB273C2989B1390044BA10 /* BurritoBistroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BurritoBistroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBDB27402989B1390044BA10 /* BurritoBistroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroUITests.swift; sourceTree = "<group>"; };
 		CBDB27422989B1390044BA10 /* BurritoBistroUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BurritoBistroUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D7A61832BA437E8CE2208A1B /* Pods_BurritoBistro_BurritoBistroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistro_BurritoBistroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +163,7 @@
 				CB6E904B2A3C0657008EF8EE /* FirebaseAuthCombine-Community in Frameworks */,
 				CB6E905F2A3C0657008EF8EE /* FirebaseMLModelDownloader in Frameworks */,
 				CB6E906E2A3C2D08008EF8EE /* FirebaseFirestore in Frameworks */,
+				6486D51F3C465E17EF9C6476 /* Pods_BurritoBistro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56E01E592AF09F160BF6B60B /* Pods_BurritoBistroTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,18 +179,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DEC1FA74E4D854D1927D81C /* Pods_BurritoBistro_BurritoBistroUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CB2BA2A42A3DAFDC00CBAF22 /* FireStore */ = {
+		86FD6A9A25C9A5F7CAE6FD7D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				361991900C862F545DEBC3DA /* Pods-BurritoBistro.debug.xcconfig */,
+				C3B3BB5060285CC2C66688FB /* Pods-BurritoBistro.release.xcconfig */,
+				32C61F6C26D4A01339DB11BC /* Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig */,
+				8B1498237BD94E48D054F806 /* Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig */,
+				86ECD083B0C3C4B46031C858 /* Pods-BurritoBistroTests.debug.xcconfig */,
+				23D5FB0F4E5BE6687421B4CE /* Pods-BurritoBistroTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CB1D68062A6A425B0018962E /* DriverFlow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DriverFlow;
+			sourceTree = "<group>";
+		};
+		CB1D68072A6A42640018962E /* CookFlow */ = {
+			isa = PBXGroup;
+			children = (
+				CB1D68092A6A43020018962E /* CookView.swift */,
+				CB1D680F2A6A500F0018962E /* CookDBSOrders.swift */,
+			);
+			path = CookFlow;
+			sourceTree = "<group>";
+		};
+		CB2BA2A42A3DAFDC00CBAF22 /* OrderFlow */ = {
+			isa = PBXGroup;
+			children = (
+				CBCE3DD82A47E6D800C345E5 /* Helpers */,
 				CB2BA2A72A3EC11E00CBAF22 /* Orders */,
 			);
-			path = FireStore;
+			path = OrderFlow;
 			sourceTree = "<group>";
 		};
 		CB2BA2A72A3EC11E00CBAF22 /* Orders */ = {
@@ -194,6 +247,9 @@
 		CB6E906C2A3C2D08008EF8EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A51C9903DF971BD9AB33C0E /* Pods_BurritoBistro.framework */,
+				D7A61832BA437E8CE2208A1B /* Pods_BurritoBistro_BurritoBistroUITests.framework */,
+				51A7528B2FFBC8D02AF6CF74 /* Pods_BurritoBistroTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,12 +302,14 @@
 		CBDB27192989B1390044BA10 = {
 			isa = PBXGroup;
 			children = (
+				CBAEE0A02A76295C0091975E /* Stripe.swift */,
 				CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */,
 				CBDB27242989B1390044BA10 /* BurritoBistro */,
 				CBDB27352989B1390044BA10 /* BurritoBistroTests */,
 				CBDB273F2989B1390044BA10 /* BurritoBistroUITests */,
 				CBDB27232989B1390044BA10 /* Products */,
 				CB6E906C2A3C2D08008EF8EE /* Frameworks */,
+				86FD6A9A25C9A5F7CAE6FD7D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -268,9 +326,10 @@
 		CBDB27242989B1390044BA10 /* BurritoBistro */ = {
 			isa = PBXGroup;
 			children = (
-				CBCE3DD82A47E6D800C345E5 /* Helpers */,
+				CB2BA2A42A3DAFDC00CBAF22 /* OrderFlow */,
+				CB1D68072A6A42640018962E /* CookFlow */,
+				CB1D68062A6A425B0018962E /* DriverFlow */,
 				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
-				CB2BA2A42A3DAFDC00CBAF22 /* FireStore */,
 				CB6E907F2A3C50C1008EF8EE /* Settings */,
 				CB61C1842A1F0D030088607E /* Cart */,
 				CB9FAA172A186A7200E0CDFC /* MainMenu */,
@@ -316,9 +375,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBDB27462989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistro" */;
 			buildPhases = (
+				73B4DD6D56EECB6C91E13E7B /* [CP] Check Pods Manifest.lock */,
 				CBDB271E2989B1390044BA10 /* Sources */,
 				CBDB271F2989B1390044BA10 /* Frameworks */,
 				CBDB27202989B1390044BA10 /* Resources */,
+				E46586F5C375CF6ED08E46FA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,6 +419,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBDB27492989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroTests" */;
 			buildPhases = (
+				A1CD127D7D4ABBC61B248C2C /* [CP] Check Pods Manifest.lock */,
 				CBDB272E2989B1390044BA10 /* Sources */,
 				CBDB272F2989B1390044BA10 /* Frameworks */,
 				CBDB27302989B1390044BA10 /* Resources */,
@@ -376,9 +438,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBDB274C2989B1390044BA10 /* Build configuration list for PBXNativeTarget "BurritoBistroUITests" */;
 			buildPhases = (
+				4B7C1497768E65503AFF5C22 /* [CP] Check Pods Manifest.lock */,
 				CBDB27382989B1390044BA10 /* Sources */,
 				CBDB27392989B1390044BA10 /* Frameworks */,
 				CBDB273A2989B1390044BA10 /* Resources */,
+				09093CBC8C6D681410809DD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -465,11 +529,115 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09093CBC8C6D681410809DD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B7C1497768E65503AFF5C22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BurritoBistro-BurritoBistroUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73B4DD6D56EECB6C91E13E7B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BurritoBistro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1CD127D7D4ABBC61B248C2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BurritoBistroTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E46586F5C375CF6ED08E46FA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CBDB271E2989B1390044BA10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBAEE0A12A76295C0091975E /* Stripe.swift in Sources */,
 				CB2BA2A32A3D3AAE00CBAF22 /* CartModel.swift in Sources */,
 				CBDB27282989B1390044BA10 /* SignUp.swift in Sources */,
 				CB6E90782A3C3E66008EF8EE /* Profile.swift in Sources */,
@@ -478,7 +646,9 @@
 				CB6E90812A3C50D0008EF8EE /* Settings.swift in Sources */,
 				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
 				CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */,
+				CB1D680A2A6A43020018962E /* CookView.swift in Sources */,
 				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
+				CB1D68102A6A500F0018962E /* CookDBSOrders.swift in Sources */,
 				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
 				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
 				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
@@ -498,6 +668,7 @@
 			files = (
 				CBDB27372989B1390044BA10 /* BurritoBistroTests.swift in Sources */,
 				CB6E90792A3C3E66008EF8EE /* Profile.swift in Sources */,
+				CBAEE0A22A76295C0091975E /* Stripe.swift in Sources */,
 				CB6E907D2A3C47E7008EF8EE /* MainFlow.swift in Sources */,
 				CB6E90752A3C34AA008EF8EE /* AuthManager.swift in Sources */,
 				CB6E90822A3C50D0008EF8EE /* Settings.swift in Sources */,
@@ -508,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBAEE0A32A76295C0091975E /* Stripe.swift in Sources */,
 				CB6E90832A3C50D0008EF8EE /* Settings.swift in Sources */,
 				CBDB27412989B1390044BA10 /* BurritoBistroUITests.swift in Sources */,
 				CB6E907A2A3C3E66008EF8EE /* Profile.swift in Sources */,
@@ -649,6 +821,7 @@
 		};
 		CBDB27472989B1390044BA10 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 361991900C862F545DEBC3DA /* Pods-BurritoBistro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -678,6 +851,7 @@
 		};
 		CBDB27482989B1390044BA10 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3B3BB5060285CC2C66688FB /* Pods-BurritoBistro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -707,6 +881,7 @@
 		};
 		CBDB274A2989B1390044BA10 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86ECD083B0C3C4B46031C858 /* Pods-BurritoBistroTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -727,6 +902,7 @@
 		};
 		CBDB274B2989B1390044BA10 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23D5FB0F4E5BE6687421B4CE /* Pods-BurritoBistroTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -747,6 +923,7 @@
 		};
 		CBDB274D2989B1390044BA10 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32C61F6C26D4A01339DB11BC /* Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -765,6 +942,7 @@
 		};
 		CBDB274E2989B1390044BA10 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B1498237BD94E48D054F806 /* Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

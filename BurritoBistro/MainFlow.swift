@@ -14,7 +14,7 @@ struct MainFlowView: View {
             if viewModel.userSession == nil{
                 SignUp()
             } else
-            if (viewModel.userSession?.email)?.lowercased() == "JuanCarlos221121@gmail.com".lowercased(){
+            if (viewModel.userSession?.email)?.lowercased() == "DICKLAND@gmail.com".lowercased(){
                 CookView()
             }
             else{
