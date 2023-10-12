@@ -254,7 +254,9 @@ struct CookView: View {
                                         HStack(spacing:0){
                                             ForEach(OrderStatus.allCases.prefix(3), id: \.self){ item in
                                                 Button{
-                                                    updateOrderStatus(for: i, with: item)
+                                                    if myOrder.incompleteOrders[i].0.undo == false{
+                                                        updateOrderStatus(for: i, with: item)
+                                                    }
                                                 }label:{
                                                     VStack(alignment:.center,spacing:4){
                                                         Image(systemName: item.OrderSymbol)
@@ -282,7 +284,9 @@ struct CookView: View {
                                             HStack(spacing:0){
                                                 ForEach(OrderStatus.allCases.suffix(3), id: \.self){ item in
                                                     Button{
-                                                        updateOrderStatus(for: i, with: item)
+                                                        if myOrder.incompleteOrders[i].0.undo == false{
+                                                            updateOrderStatus(for: i, with: item)
+                                                        }
                                                     }label:{
                                                         VStack(alignment:.center,spacing:4){
                                                             Image(systemName: item.OrderSymbol)
@@ -317,9 +321,7 @@ struct CookView: View {
 
                                             Button{
                                                 if myOrder.incompleteOrders[i].0.undo == false{
-                                                    print(myOrder.incompleteOrders[i].0.undo)
                                                     myOrder.incompleteOrders[i].0.undo = true
-                                                    print(myOrder.incompleteOrders[i].0.undo)
                                                     myOrder.objectWillChange.send()
 
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -353,12 +355,19 @@ struct CookView: View {
                                                     .padding(5)
                                                     .padding(.horizontal,40)
                                                     .background(
-                                                        RoundedRectangle(cornerRadius: 25)
-                                                            .foregroundColor(myOrder.incompleteOrders[i].0.orderModel.OrderStatus == curStates[i] ?
-                                                                             Color.clear
+                                                        ZStack(alignment:.leading){
+                                                            RoundedRectangle(cornerRadius: 25)
+                                                                .foregroundColor((myOrder.incompleteOrders[i].0.orderModel.OrderStatus == curStates[i] || myOrder.incompleteOrders[i].0.undo == true) ?
+                                                                                 Color.clear
+                                                                                 
+                                                                                 :
+                                                                                    Color.teal)
 
-                                                                             :
-                                                                             Color.teal)
+                                                            RoundedRectangle(cornerRadius: 25)
+                                                                .foregroundColor(Color.teal)
+                                                                .frame(maxWidth: myOrder.incompleteOrders[i].0.undo ? .infinity : 0)
+                                                                .animation(.linear(duration: myOrder.incompleteOrders[i].0.undo ? 2 : 0))
+                                                        }
                                                             
                                                         )
                                             }

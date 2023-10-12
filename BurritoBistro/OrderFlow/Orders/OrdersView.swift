@@ -146,6 +146,7 @@ struct OrdersView: View {
                                     if ((My_Order.Orders[i].orderModel.OrderStatus != .complete) && (My_Order.Orders[i].orderModel.OrderStatus != .rejected)){
                                         Button{
                                             addToOrderToCart(order: My_Order.Orders[i])
+                                            dismiss()
                                         }label:{
                                             
                                             VStack(alignment:.leading){
