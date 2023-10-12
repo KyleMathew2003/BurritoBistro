@@ -324,6 +324,7 @@ struct CartView: View {
                                 } catch {
                                     print("Main Menu Error: \(error)")
                                 }
+                                my_Cart.clearCart()
                                 dismiss()
                             }
                         } else if Location == ""{

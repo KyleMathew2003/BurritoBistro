@@ -33,6 +33,9 @@ struct my_Cart{
     func subtotal() -> Float {
         return Cart.reduce(0) { $0 + Float($1.Count) * $1.Item.sumIngredientPrice()}
         }
+    mutating func clearCart(){
+        Cart = []
+    }
     
     mutating func removeFromCart(menuFoodItem:MenuFoodItems){
         for i in Cart{

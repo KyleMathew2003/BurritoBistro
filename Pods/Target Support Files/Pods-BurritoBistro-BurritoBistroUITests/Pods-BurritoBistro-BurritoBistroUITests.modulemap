@@ -1,0 +1,6 @@
+framework module Pods_BurritoBistro_BurritoBistroUITests {
+  umbrella header "Pods-BurritoBistro-BurritoBistroUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
