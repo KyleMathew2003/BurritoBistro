@@ -16,7 +16,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
     let db = Firestore.firestore()
-    STPAPIClient.shared.publishableKey = "pk_test_51NZQyLFo02kxDJpO73pD2OMI9sw9b3xUB7RZkGFVifWlhBbG9stTCT6555gEVo2JM3S6Y4zSFTkxxZYTCBNHrmKE00w21eiLUS"
     let stripeKeyCollection = db.collection("Stripe")
       stripeKeyCollection.document("stripeKey").getDocument{ (document, error) in
           if let document = document, document.exists {

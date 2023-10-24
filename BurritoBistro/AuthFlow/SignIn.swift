@@ -50,7 +50,7 @@ struct SignIn: View {
     var body: some View {
         
         VStack(spacing:0){
-            Text("Welcome To Bernardo's Burrito Bistro!")
+            Text(MyStripeManager.shared.publishableKey)
                 .fontWeight(Font.Weight.bold)
                 .font(.title)
                 .padding()

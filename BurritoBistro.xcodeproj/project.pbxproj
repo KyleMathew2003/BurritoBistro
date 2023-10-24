@@ -55,6 +55,7 @@
 		CB6E90812A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
 		CB6E90822A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
 		CB6E90832A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
+		CB929D402AD8CEAB003736E7 /* AWSLambda in Frameworks */ = {isa = PBXBuildFile; productRef = CB929D3F2AD8CEAB003736E7 /* AWSLambda */; };
 		CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */; };
 		CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA182A186CD500E0CDFC /* MenuItems.swift */; };
 		CBA161A529C30377009699F8 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA161A429C30377009699F8 /* SignIn.swift */; };
@@ -146,6 +147,7 @@
 				CB6E905D2A3C0657008EF8EE /* FirebaseInstallations in Frameworks */,
 				CB6E90672A3C0657008EF8EE /* FirebaseRemoteConfigSwift in Frameworks */,
 				CB6E90702A3C2D08008EF8EE /* FirebaseFirestoreCombine-Community in Frameworks */,
+				CB929D402AD8CEAB003736E7 /* AWSLambda in Frameworks */,
 				CB6E90472A3C0657008EF8EE /* FirebaseAppCheck in Frameworks */,
 				CB6E90652A3C0657008EF8EE /* FirebaseRemoteConfig in Frameworks */,
 				CB6E90572A3C0657008EF8EE /* FirebaseFunctionsCombine-Community in Frameworks */,
@@ -410,6 +412,7 @@
 				CB6E906D2A3C2D08008EF8EE /* FirebaseFirestore */,
 				CB6E906F2A3C2D08008EF8EE /* FirebaseFirestoreCombine-Community */,
 				CB6E90712A3C2D09008EF8EE /* FirebaseFirestoreSwift */,
+				CB929D3F2AD8CEAB003736E7 /* AWSLambda */,
 			);
 			productName = BurritoBistro;
 			productReference = CBDB27222989B1390044BA10 /* BurritoBistro.app */;
@@ -488,6 +491,7 @@
 			mainGroup = CBDB27192989B1390044BA10;
 			packageReferences = (
 				CB6E90432A3C0657008EF8EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CB929D3E2AD8CEAB003736E7 /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */,
 			);
 			productRefGroup = CBDB27232989B1390044BA10 /* Products */;
 			projectDirPath = "";
@@ -755,7 +759,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -809,7 +813,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -836,6 +840,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -866,6 +871,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1009,6 +1015,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		CB929D3E2AD8CEAB003736E7 /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/aws-sdk-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.33.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1126,6 +1140,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CB6E90432A3C0657008EF8EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		CB929D3F2AD8CEAB003736E7 /* AWSLambda */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB929D3E2AD8CEAB003736E7 /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSLambda;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
