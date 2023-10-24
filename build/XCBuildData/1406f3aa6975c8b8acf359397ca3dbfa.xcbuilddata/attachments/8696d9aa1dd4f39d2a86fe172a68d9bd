@@ -1,0 +1,5 @@
+ extern const unsigned char Pods_BurritoBistro_BurritoBistroUITestsVersionString[];
+ extern const double Pods_BurritoBistro_BurritoBistroUITestsVersionNumber;
+
+ const unsigned char Pods_BurritoBistro_BurritoBistroUITestsVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Pods_BurritoBistro_BurritoBistroUITests  PROJECT:Pods-1" "\n";
+ const double Pods_BurritoBistro_BurritoBistroUITestsVersionNumber __attribute__ ((used)) = (double)1.;

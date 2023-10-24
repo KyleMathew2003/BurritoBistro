@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E22B96517805428FB84380B /* Pods_BurritoBistro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF3D86487EC5364E364BA76 /* Pods_BurritoBistro.framework */; };
+		375B1C1999B67480015E96EE /* Pods_BurritoBistroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25512F6FB5DD2E6A40EFD3B7 /* Pods_BurritoBistroTests.framework */; };
+		733F1819BD2F4D01367C5ABA /* Pods_BurritoBistro_BurritoBistroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5C6E23B3CACAC01CCB88BF /* Pods_BurritoBistro_BurritoBistroUITests.framework */; };
 		CB1455C82A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
 		CB1455C92A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
 		CB1455CA2A5A944E00378EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB1455C72A5A944E00378EE4 /* GoogleService-Info.plist */; };
@@ -123,8 +126,11 @@
 
 /* Begin PBXFileReference section */
 		23D5FB0F4E5BE6687421B4CE /* Pods-BurritoBistroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistroTests.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistroTests/Pods-BurritoBistroTests.release.xcconfig"; sourceTree = "<group>"; };
+		25512F6FB5DD2E6A40EFD3B7 /* Pods_BurritoBistroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C61F6C26D4A01339DB11BC /* Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		361991900C862F545DEBC3DA /* Pods-BurritoBistro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro.debug.xcconfig"; sourceTree = "<group>"; };
+		3BF3D86487EC5364E364BA76 /* Pods_BurritoBistro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5C6E23B3CACAC01CCB88BF /* Pods_BurritoBistro_BurritoBistroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BurritoBistro_BurritoBistroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86ECD083B0C3C4B46031C858 /* Pods-BurritoBistroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistroTests.debug.xcconfig"; path = "Target Support Files/Pods-BurritoBistroTests/Pods-BurritoBistroTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B1498237BD94E48D054F806 /* Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistro-BurritoBistroUITests/Pods-BurritoBistro-BurritoBistroUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C3B3BB5060285CC2C66688FB /* Pods-BurritoBistro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BurritoBistro.release.xcconfig"; path = "Target Support Files/Pods-BurritoBistro/Pods-BurritoBistro.release.xcconfig"; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 				CB6E904B2A3C0657008EF8EE /* FirebaseAuthCombine-Community in Frameworks */,
 				CB6E905F2A3C0657008EF8EE /* FirebaseMLModelDownloader in Frameworks */,
 				CB6E906E2A3C2D08008EF8EE /* FirebaseFirestore in Frameworks */,
+				2E22B96517805428FB84380B /* Pods_BurritoBistro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				375B1C1999B67480015E96EE /* Pods_BurritoBistroTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				733F1819BD2F4D01367C5ABA /* Pods_BurritoBistro_BurritoBistroUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +371,9 @@
 				CB224D8F2AE84CFE003D99C7 /* Pods-BurritoBistro */,
 				CB224D782AE84CFE003D99C7 /* Pods-BurritoBistro-BurritoBistroUITests */,
 				CB224D862AE84CFE003D99C7 /* Pods-BurritoBistroTests */,
+				3BF3D86487EC5364E364BA76 /* Pods_BurritoBistro.framework */,
+				5D5C6E23B3CACAC01CCB88BF /* Pods_BurritoBistro_BurritoBistroUITests.framework */,
+				25512F6FB5DD2E6A40EFD3B7 /* Pods_BurritoBistroTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
