@@ -93,9 +93,10 @@ struct MainMenu: View {
                         VStack(alignment:.leading,spacing:5){
                             HStack {
                                 Button {
+                                    AuthManager.signOut()
                                 }label:{
                                     HStack{
-                                        Text("Search")
+                                        Text(AuthManager.currentUser == nil ? "Yes" : "No")
                                         Spacer()
                                     }
                                     .padding(.leading,BubbleContentSpacing)
@@ -450,6 +451,9 @@ struct MainMenu: View {
                 print("Main Menu Error: \(error)")
             }
             }
+            
+            
+            
         }
 
         }

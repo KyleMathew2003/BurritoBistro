@@ -11,6 +11,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
+import Stripe
 
 protocol AuthFormProtocol {
     var formIsValid: Bool{ get }
@@ -29,6 +30,10 @@ class AuthManager: ObservableObject {
             await fetchUser()
         }
     }
+    
+    func initializeMyStripeManager() {
+            MyStripeManager.createSharedInstance(authManager: self)
+        }
     
     func signIn(withEmail email: String, password: String) async throws{
         do {
@@ -52,7 +57,7 @@ class AuthManager: ObservableObject {
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             await fetchUser()            
-            let data = ["email": email.lowercased(), "firstName": firstName, "lastName": lastName, "uid": user.id, "OrderNumbers" : []] as [String : Any]
+            let data = ["email": email.lowercased(), "firstName": firstName, "lastName": lastName, "uid": user.id, "OrderNumbers" : [], "TokenNumbers" : [:]] as [String : Any]
             Firestore.firestore().collection("users")
                 .document(user.id)
                 .setData(data){ _ in
@@ -86,6 +91,40 @@ class AuthManager: ObservableObject {
         self.currentUser = try? snapshot.data(as:Profile.self)
         
         print("DEBUG: Cur User is: \(self.currentUser)")
+        
+        self.initializeMyStripeManager()
+        
+        let stripeKeyCollection = Firestore.firestore().collection("Stripe")
+        stripeKeyCollection.document("stripeKey").getDocument{ (document, error) in
+            if let document = document, document.exists {
+                if let stripePublishableKey = document.data()?["PublishedKey"] as? String {
+                    MyStripeManager.shared.publishableKey = stripePublishableKey
+                    StripeAPI.defaultPublishableKey = MyStripeManager.shared.publishableKey
+                    print(MyStripeManager.shared.publishableKey)
+                } else {
+                    print("ERROR: Stripe Key Not Found")
+                }
+            }else{
+                print("ERROR: Stripe Key Document Not Found")
+            }
+        }
+        
+        stripeKeyCollection.document("LamdaHttpEndPoint").getDocument{ (document, error) in
+            if let document = document, document.exists {
+                if let EndPoint = document.data()?["LamdaEndPoint"] as? String {
+                    MyStripeManager.shared.HTTPEndPoint = EndPoint
+                    print(MyStripeManager.shared.HTTPEndPoint)
+                } else {
+                    print("ERROR: EndPoint Not Found")
+                }
+            }else{
+                print("ERROR: EndPoint  Document Not Found")
+            }
+        }
+        
+        
+        
     }
 }
+
 

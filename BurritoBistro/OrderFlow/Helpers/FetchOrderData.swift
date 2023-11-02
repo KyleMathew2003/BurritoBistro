@@ -18,7 +18,9 @@ func fetchOrdersData(_ authManager: AuthManager) async throws -> [Order]{
         return output
     }
     
-    var my_OrderNumbers = try await Firestore.firestore().collection("users").document(authManager.userSession!.uid).getDocument().data()?["OrderNumbers"] as? [String] ?? []
+    var my_OrderNumbers =
+    
+    try await Firestore.firestore().collection("users").document(authManager.userSession!.uid).getDocument().data()?["OrderNumbers"] as? [String] ?? []
   
     var my_Orders:[String:Any] = [:]
     for i in my_OrderNumbers {

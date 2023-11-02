@@ -86,6 +86,9 @@
 		CB6E90812A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
 		CB6E90822A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
 		CB6E90832A3C50D0008EF8EE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6E90802A3C50D0008EF8EE /* Settings.swift */; };
+		CB7FFDCA2AF2252C009D932E /* addPaymentMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7FFDC92AF2252C009D932E /* addPaymentMethods.swift */; };
+		CB8935682AF191B300B0963C /* PayementSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8935672AF191B300B0963C /* PayementSelection.swift */; };
+		CB89356A2AF1AF4100B0963C /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8935692AF1AF4100B0963C /* TokenModel.swift */; };
 		CB929D402AD8CEAB003736E7 /* AWSLambda in Frameworks */ = {isa = PBXBuildFile; productRef = CB929D3F2AD8CEAB003736E7 /* AWSLambda */; };
 		CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */; };
 		CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9FAA182A186CD500E0CDFC /* MenuItems.swift */; };
@@ -180,6 +183,9 @@
 		CB6E90772A3C3E66008EF8EE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		CB6E907B2A3C47E7008EF8EE /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		CB6E90802A3C50D0008EF8EE /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		CB7FFDC92AF2252C009D932E /* addPaymentMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addPaymentMethods.swift; sourceTree = "<group>"; };
+		CB8935672AF191B300B0963C /* PayementSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayementSelection.swift; sourceTree = "<group>"; };
+		CB8935692AF1AF4100B0963C /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		CB9FAA152A18541F00E0CDFC /* OffsetMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetMod.swift; sourceTree = "<group>"; };
 		CB9FAA182A186CD500E0CDFC /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		CBA161A429C30377009699F8 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
@@ -386,6 +392,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		CB8935662AF1918C00B0963C /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				CB8935672AF191B300B0963C /* PayementSelection.swift */,
+				CB8935692AF1AF4100B0963C /* TokenModel.swift */,
+				CB7FFDC92AF2252C009D932E /* addPaymentMethods.swift */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
 		CB9FAA172A186A7200E0CDFC /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,6 +470,7 @@
 				CB1D68072A6A42640018962E /* CookFlow */,
 				CB9FAA182A186CD500E0CDFC /* MenuItems.swift */,
 				CB6E907F2A3C50C1008EF8EE /* Settings */,
+				CB8935662AF1918C00B0963C /* Payments */,
 				CB61C1842A1F0D030088607E /* Cart */,
 				CB9FAA172A186A7200E0CDFC /* MainMenu */,
 				CBA161A629C30392009699F8 /* AuthFlow */,
@@ -797,18 +814,21 @@
 				CB6E90782A3C3E66008EF8EE /* Profile.swift in Sources */,
 				CB61C1862A1F0D140088607E /* CartView.swift in Sources */,
 				CB9FAA192A186CD500E0CDFC /* MenuItems.swift in Sources */,
+				CB8935682AF191B300B0963C /* PayementSelection.swift in Sources */,
 				CB6E90812A3C50D0008EF8EE /* Settings.swift in Sources */,
 				CBA161A529C30377009699F8 /* SignIn.swift in Sources */,
 				CB2BA2AB2A3ED35C00CBAF22 /* OrdersViewModel.swift in Sources */,
 				CB1D680A2A6A43020018962E /* CookView.swift in Sources */,
 				CBA161AA29C57FA4009699F8 /* HalfBubble.swift in Sources */,
 				CB1D68102A6A500F0018962E /* CookDBSOrders.swift in Sources */,
+				CB89356A2AF1AF4100B0963C /* TokenModel.swift in Sources */,
 				CB9FAA162A18541F00E0CDFC /* OffsetMod.swift in Sources */,
 				CBCFAE0329A3101F00BD2B2A /* ConcaveConvexTop.swift in Sources */,
 				CBA161A829C468ED009699F8 /* MainMenuView.swift in Sources */,
 				CBCE3DDA2A47E77000C345E5 /* FetchOrderData.swift in Sources */,
 				CB6E907C2A3C47E7008EF8EE /* MainFlow.swift in Sources */,
 				CB2BA2A92A3ED35000CBAF22 /* OrdersModel.swift in Sources */,
+				CB7FFDCA2AF2252C009D932E /* addPaymentMethods.swift in Sources */,
 				CB6E90742A3C34AA008EF8EE /* AuthManager.swift in Sources */,
 				CBC8DC402A2ABA7700C28CA7 /* IngredientOptionsView.swift in Sources */,
 				CBDB27262989B1390044BA10 /* BurritoBistroApp.swift in Sources */,

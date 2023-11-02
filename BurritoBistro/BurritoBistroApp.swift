@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
@@ -16,19 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
     let db = Firestore.firestore()
-    let stripeKeyCollection = db.collection("Stripe")
-      stripeKeyCollection.document("stripeKey").getDocument{ (document, error) in
-          if let document = document, document.exists {
-              if let stripePublishableKey = document.data()?["PublishedKey"] as? String {
-                  MyStripeManager.shared.publishableKey = stripePublishableKey
-                  print(MyStripeManager.shared.publishableKey)
-              } else {
-                  print("ERROR: Stripe Key Not Found")
-              }
-          }else{
-              print("ERROR: Stripe Key Document Not Found")
-          }
-      }
+      
     return true
   }
 }
